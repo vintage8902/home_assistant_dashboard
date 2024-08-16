@@ -1,0 +1,195 @@
+button_card_templates:
+  serie:
+    show_state: false
+    show_label: false
+    show_icon: false
+    show_entity_picture: true
+    state:
+      - value: 'on'
+        styles:
+          card:
+            - background: var(--accent-color)
+            - border-color: var(--text-color)
+      - value: 'off'
+        styles:
+          card:
+            - background: var(--background-color-2)
+            - border-color: var(--background-color)
+    styles:
+      grid:
+        - grid-template-areas: '"i" "n"'
+        - grid-template-columns: auto
+      card:
+        - margin: 0
+        - border-radius: 50px
+        - border-width: 1px
+        - border-color: var(--text-color)
+        - padding: 10px 5px 20px 5px
+        - height: 200px
+        - width: 100px
+      icon:
+        - width: 75px
+        - color: var(--text-color)
+      img_cell:
+        - background: var(--background-color)
+        - border-radius: 50px
+        - width: 65px
+        - margin-top: 17.5px
+      name:
+        - justify-self: center
+        - font-size: 12px
+        - padding-top: 30px
+        - padding-bottom: 10px
+        - font-weight: bold
+  mediaplayer:
+    show_state: false
+    show_label: false
+    show_icon: false
+    state:
+      - value: 'on'
+        styles:
+          card:
+            - background: var(--accent-color)
+            - border-color: var(--text-color)
+          img_cell:
+            - background: var(--lysbryter-image-cell)
+            - border-radius: 100px
+            - width: 35px
+            - height: 35px
+          icon:
+            - width: 20px
+            - color: var(--text-color)
+      - value: 'off'
+        styles:
+          card:
+            - background: var(--background-color-2)
+            - border-color: var(--background-color)
+          img_cell:
+            - background: var(--background-color)
+            - border-radius: 100px
+            - width: 35px
+            - height: 35px
+          icon:
+            - width: 20px
+            - color: var(--text-color)
+            - opacity: 50%
+    styles:
+      grid:
+        - grid-template-areas: '"n"'
+        - grid-template-columns: auto
+      card:
+        - margin: 0
+        - border-radius: 50px
+        - border-width: none
+        - border-color: var(--text-color)
+        - padding: 8px 12px 8px 5px
+        - height: 50px
+      icon:
+        - width: 20px
+        - color: var(--text-color)
+      name:
+        - padding: 0px 1px
+        - text-align: center
+        - justify-self: center
+        - font-size: 12px
+        - padding-left: 10px
+        - font-weight: bold
+      state:
+        - justify-self: start
+        - font-size: 10px
+        - padding-right: 20px
+        - opacity: '0.7'
+  sensor:
+    tap_action:
+      action: more-info
+    show_state: true
+    show_label: false
+    styles:
+      img_cell:
+        - background: var(--background-color)
+        - border-radius: 100px
+        - width: 35px
+        - height: 35px
+      grid:
+        - grid-template-areas: |
+            "i n"
+            "i s"
+        - grid-template-columns: 40px 1fr 60px
+      card:
+        - background: var(--background-color-2)
+        - border-color: var(--background-color)
+        - margin: 0
+        - border-radius: 50px
+        - border-width: none
+        - border-color: var(--text-color)
+        - padding: 8px 12px 8px 5px
+      icon:
+        - width: 20px
+        - color: var(--text-color)
+        - opacity: 50%
+      name:
+        - justify-self: start
+        - font-size: 12px
+        - padding-left: 10px
+        - font-weight: bold
+      state:
+        - justify-self: start
+        - font-size: 10px
+        - padding-left: 10px
+        - opacity: '0.7'
+  lysbryter:
+    show_state: false
+    show_label: false
+    state:
+      - value: 'on'
+        styles:
+          card:
+            - background: var(--accent-color)
+            - border-color: var(--text-color)
+          img_cell:
+            - background: var(--lysbryter-image-cell)
+            - border-radius: 100px
+            - width: 35px
+            - height: 35px
+          icon:
+            - width: 20px
+            - color: var(--text-color)
+      - value: 'off'
+        styles:
+          card:
+            - background: var(--background-color-2)
+            - border-color: var(--background-color)
+          img_cell:
+            - background: var(--background-color)
+            - border-radius: 100px
+            - width: 35px
+            - height: 35px
+          icon:
+            - width: 20px
+            - color: var(--text-color)
+            - opacity: 50%
+    styles:
+      grid:
+        - grid-template-areas: '"i n s"'
+        - grid-template-columns: 40px 1fr 40px
+      card:
+        - margin: 0
+        - border-radius: 50px
+        - border-width: none
+        - border-color: var(--text-color)
+        - padding: 8px 12px 8px 5px
+      icon:
+        - width: 20px
+        - color: var(--text-color)
+      name:
+        - padding: 0px 1px
+        - text-align: left
+        - justify-self: start
+        - font-size: 12px
+        - padding-left: 10px
+        - font-weight: bold
+      state:
+        - justify-self: start
+        - font-size: 10px
+        - padding-right: 20px
+        - opacity: '0.7'

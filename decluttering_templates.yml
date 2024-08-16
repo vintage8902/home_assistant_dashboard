@@ -1,0 +1,423 @@
+decluttering_templates:
+  seperator:
+    default:
+      - icon: ''
+      - name: ''
+    card:
+      type: custom:bubble-card
+      card_type: separator
+      name: '[[name]]'
+      icon: '[[icon]]'
+      card_layout: large
+      styles: |
+        .bubble-name {
+          font-weight: 100;
+          font-size: 20px;
+        }
+        .bubble-line {
+          background-color: var(--background-color-2, var(--secondary-background-color));
+          opacity: 0.2;
+        }
+  lys-slider:
+    card:
+      type: conditional
+      conditions:
+        - condition: state
+          entity: '[[entity]]'
+          state_not: unavailable
+      card:
+        type: custom:bubble-card
+        card_type: button
+        entity: '[[entity]]'
+        icon: '[[icon]]'
+        button_type: slider
+        name: '[[navn]]'
+        tap_action:
+          action: toggle
+        styles: |
+          .range-fill { 
+            background: var(--accent-color) !important; 
+          }
+            ha-card { 
+            font-size: 12px;
+          }
+  lysbryter:
+    card:
+      type: conditional
+      conditions:
+        - condition: state
+          entity: '[[entity]]'
+          state_not: unavailable
+      card:
+        type: custom:button-card
+        template: lysbryter
+        name: '[[navn]]'
+        icon: '[[icon]]'
+        entity: '[[entity]]'
+  navigasjon:
+    card:
+      type: custom:button-card
+      template: lysbryter
+      name: '[[navn]]'
+      icon: '[[icon]]'
+      entity: '[[entity]]'
+      tap_action:
+        action: navigate
+        navigation_path: '[[path]]'
+      styles:
+        grid:
+          - grid-template-areas: '"i n s"'
+          - grid-template-columns: 40px 1fr 40px
+        card:
+          - margin: 0
+          - border-radius: 50px
+          - border-width: none
+          - padding: 8px 12px 8px 5px
+          - background: var(--background-color-2)
+          - border-color: var(--background-color)
+        img_cell:
+          - background: var(--background-color)
+          - border-radius: 100px
+          - width: 35px
+          - height: 35px
+        icon:
+          - width: 20px
+          - color: var(--text-color)
+          - opacity: 50%
+        name:
+          - padding: 0px 1px
+          - text-align: left
+          - justify-self: start
+          - font-size: 12px
+          - padding-left: 10px
+          - font-weight: bold
+        state:
+          - justify-self: start
+          - font-size: 10px
+          - padding-right: 20px
+          - opacity: '0.7'
+  navigasjon_url:
+    card:
+      type: custom:button-card
+      template: lysbryter
+      name: '[[navn]]'
+      icon: '[[icon]]'
+      entity: '[[entity]]'
+      tap_action:
+        action: url
+        url_path: '[[path]]'
+      styles:
+        grid:
+          - grid-template-areas: '"i n s"'
+          - grid-template-columns: 40px 1fr 40px
+        card:
+          - margin: 0
+          - border-radius: 50px
+          - border-width: none
+          - padding: 8px 12px 8px 5px
+          - background: var(--background-color-2)
+          - border-color: var(--background-color)
+        img_cell:
+          - background: var(--background-color)
+          - border-radius: 100px
+          - width: 35px
+          - height: 35px
+        icon:
+          - width: 20px
+          - color: var(--text-color)
+          - opacity: 50%
+        name:
+          - padding: 0px 1px
+          - text-align: left
+          - justify-self: start
+          - font-size: 12px
+          - padding-left: 10px
+          - font-weight: bold
+        state:
+          - justify-self: start
+          - font-size: 10px
+          - padding-right: 20px
+          - opacity: '0.7'
+  termostat:
+    card:
+      type: custom:button-card
+      name: '[[navn]]'
+      icon: '[[icon]]'
+      entity: '[[entity]]'
+      tap_action:
+        action: toggle
+      hold_action:
+        action: more-info
+      label: |
+        [[[
+          var state = entity.state;
+          if(state == "heat")
+            return  states['[[entity]]'].attributes.current_temperature + " °C - På"
+          else
+            return states['[[entity]]'].attributes.current_temperature + " °C - Av"
+        ]]]
+      show_state: false
+      show_label: true
+      custom_fields:
+        notification2: |
+          [[[
+            return `<ha-icon icon="mdi:fire-circle" style="width: 15px; height: 15px; color: var(--text-color);"></ha-icon>`;
+          ]]]
+        button2:
+          card:
+            type: custom:button-card
+            tap_action:
+              action: call-service
+              service: climate.set_temperature
+              service_data:
+                entity_id: '[[entity]]'
+                temperature: >
+                  [[[ var temp = ((states['[[entity]]'].attributes.temperature)
+                  + 1);
+                      return temp; ]]]
+            name: +
+            styles:
+              card:
+                - background: var(--accent-color)
+                - width: 35px
+                - height: 35px
+              name:
+                - font-size: 14px
+        temp:
+          card:
+            type: custom:button-card
+            entity: '[[entity]]'
+            show_name: false
+            show_icon: false
+            show_label: true
+            label: >
+              [[[ return states['[[entity]]'].attributes.temperature  + " °C"
+              ]]]
+            name: '-'
+            styles:
+              card:
+                - background: var(--accent-color)
+                - width: 70px
+                - height: 35px
+              label:
+                - justify-self: center
+                - font-size: 12px
+        button1:
+          card:
+            type: custom:button-card
+            name: '-'
+            tap_action:
+              action: call-service
+              service: climate.set_temperature
+              service_data:
+                entity_id: '[[entity]]'
+                temperature: >
+                  [[[ var temp = ((states['[[entity]]'].attributes.temperature)
+                  - 1);
+                      return temp; ]]]
+            styles:
+              card:
+                - background: var(--accent-color)
+                - width: 35px
+                - height: 35px
+              name:
+                - font-size: 14px
+      styles:
+        grid:
+          - grid-template-areas: '"i n button1 temp button2" "i l button1 temp button2"'
+          - grid-template-columns: 40px 185px 40px 75px 40px
+        card:
+          - margin: 0
+          - border-radius: 50px
+          - border-width: none
+          - padding: 8px 12px 8px 5px
+          - background: var(--background-color-2)
+          - border-color: var(--background-color)
+        icon:
+          - width: 20px
+          - color: var(--text-color)
+        img_cell:
+          - background: var(--background-color)
+          - border-radius: 100px
+          - width: 35px
+          - height: 35px
+        name:
+          - padding: 0px 1px
+          - text-align: left
+          - justify-self: start
+          - font-size: 12px
+          - padding-left: 10px
+          - font-weight: bold
+        label:
+          - justify-self: start
+          - font-size: 10px
+          - padding-left: 10px
+          - opacity: '0.7'
+        custom_fields:
+          notification2:
+            - border-radius: 50%
+            - position: absolute
+            - left: 30px
+            - margin-top: 0px
+            - height: 20px
+            - width: 20px
+            - font-size: 12px
+            - line-height: 14px
+            - justify-self: center
+            - align-self: start
+            - background-color: rgba(var(--color-green))
+            - display: |
+                [[[
+                  return states['[[entity]]'].attributes.hvac_action === 'idle' ? 'none' : 'block'
+                ]]]
+  termostat_ventilasjon:
+    card:
+      type: custom:button-card
+      name: '[[navn]]'
+      icon: '[[icon]]'
+      entity: '[[entity]]'
+      tap_action:
+        action: more-info
+      label: >
+        [[[ return states['[[entity]]'].attributes.current_temperature + " °C -
+        " + states['input_select.modus_vtr'].state  ]]] 
+      show_state: false
+      show_label: true
+      custom_fields:
+        button2:
+          card:
+            type: custom:button-card
+            tap_action:
+              action: call-service
+              service: climate.set_temperature
+              service_data:
+                entity_id: '[[entity]]'
+                temperature: >
+                  [[[ var temp = ((states['[[entity]]'].attributes.temperature)
+                  + 1);
+                      return temp; ]]]
+            name: +
+            styles:
+              card:
+                - background: var(--accent-color)
+                - width: 35px
+                - height: 35px
+              name:
+                - font-size: 14px
+        temp:
+          card:
+            type: custom:button-card
+            entity: '[[entity]]'
+            show_name: false
+            show_icon: false
+            show_label: true
+            label: >
+              [[[ return states['[[entity]]'].attributes.temperature  + " °C"
+              ]]]
+            name: '-'
+            styles:
+              card:
+                - background: var(--accent-color)
+                - width: 70px
+                - height: 35px
+              label:
+                - justify-self: center
+                - font-size: 12px
+        button1:
+          card:
+            type: custom:button-card
+            name: '-'
+            tap_action:
+              action: call-service
+              service: climate.set_temperature
+              service_data:
+                entity_id: '[[entity]]'
+                temperature: >
+                  [[[ var temp = ((states['[[entity]]'].attributes.temperature)
+                  - 1);
+                      return temp; ]]]
+            styles:
+              card:
+                - background: var(--accent-color)
+                - width: 35px
+                - height: 35px
+              name:
+                - font-size: 14px
+      styles:
+        grid:
+          - grid-template-areas: '"i n button1 temp button2" "i l button1 temp button2"'
+          - grid-template-columns: 40px 185px 40px 75px 40px
+        card:
+          - margin: 0
+          - border-radius: 50px
+          - border-width: none
+          - padding: 8px 12px 8px 5px
+          - background: var(--background-color-2)
+          - border-color: var(--background-color)
+        icon:
+          - width: 20px
+          - color: var(--text-color)
+        img_cell:
+          - background: var(--background-color)
+          - border-radius: 100px
+          - width: 35px
+          - height: 35px
+        name:
+          - padding: 0px 1px
+          - text-align: left
+          - justify-self: start
+          - font-size: 12px
+          - padding-left: 10px
+          - font-weight: bold
+        label:
+          - justify-self: start
+          - font-size: 10px
+          - padding-left: 10px
+          - opacity: '0.7'
+  serie:
+    card:
+      type: custom:state-switch
+      entity: template
+      template: |
+        {{ state_attr('sensor.trakt_next_to_watch_all', 'data')
+          | map(attribute='title')| map('lower') | select('eq', '[[serie_navn_i_sensor]]')
+          | list | count > 0 }}
+      states:
+        'true':
+          type: custom:button-card
+          name: '[[navn_knapp]]'
+          tap_action:
+            action: call-service
+            service: '[[script]]'
+          entity_picture: '[[poster]]'
+          show_state: false
+          show_label: false
+          show_icon: false
+          show_entity_picture: true
+          styles:
+            grid:
+              - grid-template-areas: '"i" "n"'
+              - grid-template-columns: auto
+            card:
+              - margin: 0
+              - background: var(--background-color-2)
+              - border-radius: 50px
+              - border-width: 0
+              - border-color: var(--text-color)
+              - padding: 10px 5px 20px 5px
+              - height: 200px
+              - width: 100px
+            icon:
+              - width: 80px
+              - color: var(--text-color)
+            img_cell:
+              - background: var(--background-color)
+              - border-radius: 50px
+              - width: 65px
+              - margin-top: 17.5px
+            name:
+              - justify-self: center
+              - font-size: 12px
+              - padding-top: 30px
+              - padding-bottom: 10px
+              - font-weight: bold
