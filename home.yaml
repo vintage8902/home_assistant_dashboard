@@ -1,0 +1,3643 @@
+path: home
+title: Home
+theme: noctis
+cards:
+  - type: vertical-stack
+    cards:
+      - type: custom:button-card
+        name: HJEM
+        tap_action:
+          action: toggle
+        entity: input_boolean.kiosk_mode
+        show_icon: false
+        show_name: false
+        custom_fields:
+          badge:
+            card:
+              type: custom:button-card
+              label: "[[[return states[\"sensor.dato\"].state]]]"
+              show_label: true
+              show_icon: false
+              show_name: false
+              tap_action:
+                action: navigate
+                navigation_path: "#kalender"
+              styles:
+                grid:
+                  - grid-template-areas: "\"n gutter l\""
+                  - grid-template-columns: min-content 5px min-content
+                  - grid-template-rows: min-content
+                card:
+                  - margin-left: 0px
+                  - padding-left: 30px
+                  - padding-right: 30px
+                  - padding-top: 15px
+                  - padding-bottom: 15px
+                  - font-size: 20px
+                  - line-height: 18px
+                  - font-weight: 500
+                  - background: var(--background-color-2)
+                name:
+                  - color: var(--contrast1)
+                label:
+                  - color: var(--text-color)
+        styles:
+          grid:
+            - grid-template-areas: "\"n\" \"badge\""
+          card:
+            - box-shadow: none
+            - background-color: transparent
+            - cursor: none
+            - background: var(--background-color)
+            - border-top-left-radius: 0px
+            - border-top-right-radius: 0px
+            - padding: 16px 0
+            - "--mdc-ripple-press-opacity": 0
+          name:
+            - color: var(--text-color)
+            - font-size: 40px
+          custom_fields:
+            badge:
+              - margin: 16px auto 0 auto
+              - "--mdc-ripple-press-opacity": 0.5
+      - type: custom:decluttering-card
+        template: seperator
+        variables:
+          - name: Kalender
+      - type: custom:atomic-calendar-revive
+        enableModeChange: true
+        entities:
+          - entity: calendar.ele118_grunnleggende_nettverksteknikk
+            name: ELE118 - Grunnleggende Nettverksteknikk
+          - entity: calendar.martine_og_andre_2
+            name: Martine og André
+          - entity: calendar.arbeid_2
+            name: Arbeid André
+          - entity: calendar.ele141_elektrofaglig_basis_1
+            name: ELE141 - Elektrofaglig Basis 1
+          - entity: calendar.ele204_reguleringsteknikk_1
+            name: ELE204 - Reguleringsteknikk 1
+          - entity: calendar.ele205_videregaende_programmering
+            name: ELE205 - Videregaende Programmering
+          - entity: >-
+              calendar.https_cloud_timeedit_net_hvl_web_pen_ri6625qy7k35u6qzq9qn31zqzw8zy76807_ics
+            name: ING202 - Programmering for Ingeniører
+        maxDaysToShow: 1
+        disableCalLocationLink: true
+        showWeekNumber: false
+        showEventDate: false
+        showCalendarName: true
+        showProgressBar: true
+        showFullDayProgress: false
+        dimFinishedEvents: true
+        disableCalLink: true
+        disableCalEventLink: false
+        showLastCalendarWeek: false
+        disableEventLink: false
+        disableLocationLink: true
+        showNoEventsForToday: false
+        showDatePerEvent: false
+        showTimeRemaining: false
+        hoursOnSameLine: true
+        showEventIcon: false
+        card_mod:
+          style: |
+            ha-card {
+              font-size: 14px;
+            }
+            .cal-titleContainer {
+              display: none;
+            }
+            .event-right {
+              border: 3px dashed rgba(249,208,169,0.1) !important;
+              border-radius: 20px;
+              background-color: rgba(49,57,78,1);
+              padding: 10px;
+            }
+      - type: custom:layout-card
+        layout_type: custom:vertical-layout
+        layout:
+          height: 60vh
+          margin: 0vh 0vh 0vh
+          padding: 0vh 0.4vh
+        cards:
+          - type: custom:decluttering-card
+            template: seperator
+            variables:
+              - name: Navigasjon
+          - square: false
+            type: grid
+            cards:
+              - type: custom:decluttering-card
+                template: navigasjon
+                variables:
+                  - navn: Lys og <br> Gardiner
+                  - icon: mdi:ceiling-light
+                  - path: "#lys"
+              - type: custom:decluttering-card
+                template: navigasjon
+                variables:
+                  - navn: Scener
+                  - icon: mdi:palette
+                  - path: "#scener"
+              - type: custom:decluttering-card
+                template: navigasjon
+                variables:
+                  - navn: Media
+                  - icon: mdi:music
+                  - path: "#media"
+              - type: custom:decluttering-card
+                template: navigasjon
+                variables:
+                  - navn: Støvsuger
+                  - icon: mdi:robot-vacuum
+                  - path: "#vacuum"
+              - type: custom:decluttering-card
+                template: navigasjon
+                variables:
+                  - navn: Klima
+                  - icon: mdi:thermometer
+                  - path: "#klima"
+              - type: custom:decluttering-card
+                template: navigasjon
+                variables:
+                  - navn: Teknisk
+                  - icon: mdi:cog
+                  - path: "#teknisk"
+              - type: custom:decluttering-card
+                template: navigasjon
+                variables:
+                  - navn: Handleliste
+                  - icon: mdi:cart
+                  - path: "#handleliste"
+              - type: custom:decluttering-card
+                template: navigasjon
+                variables:
+                  - navn: Mealie
+                  - icon: mdi:silverware-fork-knife
+                  - path: mealie
+              - type: custom:decluttering-card
+                template: navigasjon
+                variables:
+                  - navn: Reiserute
+                  - icon: mdi:bus-clock
+                  - path: "#reiserute"
+            columns: 2
+          - type: custom:decluttering-card
+            template: seperator
+            variables:
+              - name: Forslag
+          - square: false
+            type: grid
+            cards:
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_boolean.kl_22_04
+                    state: "on"
+                card:
+                  type: custom:decluttering-card
+                  template: lysbryter
+                  variables:
+                    - navn: God Natt
+                    - icon: mdi:moon-waning-crescent
+                    - entity: input_boolean.god_natt
+            columns: 2
+          - type: conditional
+            conditions:
+              - condition: state
+                entity: vacuum.roborock_s7
+                state_not: docked
+            card:
+              type: custom:bubble-card
+              card_type: select
+              entity: input_select.stovsuger_nedtrekksmeny
+              name: Britt Arbeider
+              show_state: false
+              sub_button:
+                - entity: input_text.hva_gjor_stovsuger_na
+                  show_icon: false
+                  show_background: false
+                  show_name: false
+                  show_state: true
+          - type: conditional
+            conditions:
+              - condition: numeric_state
+                entity: counter.dager_siden_tomt_kattedo
+                above: 3
+            card:
+              type: custom:decluttering-card
+              template: lysbryter
+              variables:
+                - navn: Tøm kattedo
+                - icon: mdi:emoticon-poop
+                - entity: input_boolean.tomt_kattedo
+        view_layout:
+          grid-area: main
+  - type: vertical-stack
+    cards:
+      - type: custom:bubble-card
+        card_type: pop-up
+        hash: "#handleliste"
+        name: Handleliste
+        back_open: true
+        margin_top_mobile: 0px
+        bg_opacity: "100"
+        icon: mdi:cart
+      - type: todo-list
+        entity: todo.mealie_handleliste
+      - type: custom:mod-card
+        card_mod:
+          style: |
+            ha-card { 
+              z-index: 2;
+              position: fixed;
+              bottom: 36px;
+              left: 10px;
+              width: calc(100% - 20px);
+              background: var(--background-color) !important;
+              padding: 10px;
+              }
+        card:
+          type: grid
+          square: false
+          columns: 1
+          cards:
+            - type: custom:paper-buttons-row
+              buttons:
+                - icon: mdi:home
+                  layout: icon
+                  name: Hjem
+                  tap_action:
+                    action: navigate
+                    navigation_path: home
+                  styles:
+                    button:
+                      background-color: var(--footer-accent-color)
+                      border-radius: 34px
+                      width: 102px
+                      height: 42px
+                    icon:
+                      margin-top: 0
+  - type: vertical-stack
+    cards:
+      - type: custom:bubble-card
+        card_type: pop-up
+        hash: "#teknisk"
+        name: Teknisk
+        back_open: true
+        margin_top_mobile: 0px
+        bg_opacity: "100"
+        icon: mdi:cog
+      - type: custom:layout-card
+        layout_type: custom:vertical-layout
+        layout:
+          height: 70vh
+          margin: 0vh 0vh 0vh
+          padding: 0vh 0.4vh
+        cards:
+          - type: custom:decluttering-card
+            template: seperator
+            variables:
+              - name: Sikkerhet
+          - type: horizontal-stack
+            cards:
+              - type: custom:bubble-card
+                card_type: button
+                entity: lock.ytterdor
+                name: Inngangsdør
+                show_state: true
+                icon: mdi:door
+                styles: |
+                  ha-card { 
+                    font-size: 12px;
+                  }
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: alarm_control_panel.sector_alarmpanel_01232552_none
+                    state: armed_away
+                card:
+                  type: custom:bubble-card
+                  card_type: button
+                  button_type: custom
+                  entity: alarm_control_panel.sector_alarmpanel_01232552_none
+                  name: Skru av alarm
+                  icon: mdi:shield-off
+                  tap_action:
+                    action: call-service
+                    service: script.alarm_av
+                  show_state: true
+                  styles: |
+                    ha-card { 
+                      font-size: 12px;
+                    }
+                  button_action:
+                    tap_action:
+                      action: call-service
+                      service: script.alarm_av
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: alarm_control_panel.sector_alarmpanel_01232552_none
+                    state: disarmed
+                card:
+                  type: custom:bubble-card
+                  card_type: button
+                  button_type: custom
+                  entity: alarm_control_panel.sector_alarmpanel_01232552_none
+                  name: Skru på alarm
+                  icon: mdi:shield
+                  tap_action:
+                    action: call-service
+                    service: script.alarm_pa
+                    target: {}
+                  show_state: true
+                  styles: |
+                    ha-card { 
+                      font-size: 12px;
+                    }
+                  button_action:
+                    tap_action:
+                      action: call-service
+                      service: script.alarm_pa
+          - type: custom:decluttering-card
+            template: seperator
+            variables:
+              - name: Vaskerom
+          - type: horizontal-stack
+            cards:
+              - type: custom:bubble-card
+                card_type: button
+                entity: input_boolean.vaskemaskin
+                name: Vaskemaskin
+                show_state: true
+                styles: |
+                  ha-card { 
+                    font-size: 12px;
+                  }
+              - type: custom:bubble-card
+                card_type: button
+                entity: input_boolean.torketrommel
+                name: Tørketrommel
+                show_state: true
+                styles: |
+                  ha-card { 
+                    font-size: 12px;
+                  }
+          - type: custom:decluttering-card
+            template: seperator
+            variables:
+              - name: Vanning
+          - type: horizontal-stack
+            cards:
+              - type: custom:bubble-card
+                card_type: button
+                entity: switch.water_control
+                icon: mdi:water
+                name: Vanning
+              - type: custom:bubble-card
+                card_type: button
+                button_type: state
+                entity: sensor.sensor_soil_humidity
+                name: Fuktighet Tre
+                icon: ""
+          - type: custom:decluttering-card
+            template: seperator
+            variables:
+              - name: Tema
+          - type: custom:bubble-card
+            card_type: button
+            button_type: custom
+            entity: input_select.themes
+            show_state: true
+            name: Velg tema farge
+            tap_action:
+              action: call-service
+              service: input_select.select_next
+              data:
+                cycle: true
+              target:
+                entity_id: input_select.themes
+            styles: |
+              ha-card { 
+                font-size: 12px;
+              }
+            button_action:
+              tap_action:
+                action: call-service
+                service: input_select.select_next
+                data:
+                  cycle: true
+                target:
+                  entity_id: input_select.themes
+          - type: custom:decluttering-card
+            template: seperator
+            variables:
+              - name: Diverse
+          - type: custom:button-card
+            name: Batterinivå
+            icon: mdi:battery-60
+            tap_action:
+              action: navigate
+              navigation_path: "#batteri"
+            show_state: true
+            show_label: false
+            styles:
+              img_cell:
+                - background: var(--background-color)
+                - border-radius: 100px
+                - width: 35px
+                - height: 35px
+              grid:
+                - grid-template-areas: "\"i n s\""
+                - grid-template-columns: 40px 1fr 40px
+              card:
+                - background: var(--background-color-2)
+                - border-color: var(--background-color)
+                - margin: 0
+                - border-radius: 50px
+                - border-width: none
+                - border-color: var(--text-color)
+                - padding: 8px 12px 8px 5px
+              icon:
+                - width: 20px
+                - color: var(--text-color)
+                - opacity: 50%
+              name:
+                - justify-self: start
+                - font-size: 12px
+                - padding-left: 10px
+                - font-weight: bold
+              state:
+                - justify-self: start
+                - font-size: 10px
+                - padding-right: 20px
+                - opacity: "0.7"
+          - type: custom:button-card
+            name: Strøm
+            icon: mdi:lightning-bolt
+            label: >
+              [[[ return states['sensor.electricity_price_vardane_214'].state +
+              " kr"]]]
+            tap_action:
+              action: navigate
+              navigation_path: "#strom"
+            show_state: false
+            show_label: true
+            styles:
+              img_cell:
+                - background: var(--background-color)
+                - border-radius: 100px
+                - width: 35px
+                - height: 35px
+              grid:
+                - grid-template-areas: |
+                    "i n"
+                    "i l"
+                - grid-template-columns: 40px 1fr 60px
+              card:
+                - background: var(--background-color-2)
+                - border-color: var(--background-color)
+                - margin: 0
+                - border-radius: 50px
+                - border-width: none
+                - border-color: var(--text-color)
+                - padding: 8px 12px 8px 5px
+              icon:
+                - width: 20px
+                - color: var(--text-color)
+                - opacity: 50%
+              name:
+                - justify-self: start
+                - font-size: 12px
+                - padding-left: 10px
+                - font-weight: bold
+              label:
+                - justify-self: start
+                - font-size: 10px
+                - padding-left: 10px
+                - opacity: "0.7"
+          - type: custom:button-card
+            name: Automasjoner
+            icon: mdi:home-automation
+            tap_action:
+              action: navigate
+              navigation_path: "#automasjon"
+            show_state: true
+            show_label: false
+            styles:
+              img_cell:
+                - background: var(--background-color)
+                - border-radius: 100px
+                - width: 35px
+                - height: 35px
+              grid:
+                - grid-template-areas: "\"i n s\""
+                - grid-template-columns: 40px 1fr 40px
+              card:
+                - background: var(--background-color-2)
+                - border-color: var(--background-color)
+                - margin: 0
+                - border-radius: 50px
+                - border-width: none
+                - border-color: var(--text-color)
+                - padding: 8px 12px 8px 5px
+              icon:
+                - width: 20px
+                - color: var(--text-color)
+                - opacity: 50%
+              name:
+                - justify-self: start
+                - font-size: 12px
+                - padding-left: 10px
+                - font-weight: bold
+              state:
+                - justify-self: start
+                - font-size: 10px
+                - padding-right: 20px
+                - opacity: "0.7"
+        view_layout:
+          grid-area: main
+      - type: custom:mod-card
+        card_mod:
+          style: |
+            ha-card { 
+              z-index: 2;
+              position: fixed;
+              bottom: 36px;
+              left: 10px;
+              width: calc(100% - 20px);
+              background: var(--background-color) !important;
+              padding: 10px;
+              }
+        card:
+          type: grid
+          square: false
+          columns: 1
+          cards:
+            - type: custom:paper-buttons-row
+              buttons:
+                - icon: mdi:home
+                  layout: icon
+                  name: Hjem
+                  tap_action:
+                    action: navigate
+                    navigation_path: home
+                  styles:
+                    button:
+                      background-color: var(--footer-accent-color)
+                      border-radius: 34px
+                      width: 102px
+                      height: 42px
+                    icon:
+                      margin-top: 0
+  - type: vertical-stack
+    cards:
+      - type: custom:bubble-card
+        card_type: pop-up
+        hash: "#lys"
+        name: Lys og Gardiner
+        back_open: true
+        margin_top_mobile: 0px
+        bg_opacity: "100"
+        icon: mdi:ceiling-light
+        entity: sensor.lights_on
+        show_state: true
+      - type: custom:layout-card
+        layout_type: custom:vertical-layout
+        layout:
+          height: 70vh
+          margin: 0vh 0vh 0vh
+          padding: 0vh 0.4vh
+        cards:
+          - type: custom:decluttering-card
+            template: seperator
+            variables:
+              - name: 1. etasje
+          - square: false
+            type: grid
+            cards:
+              - type: custom:decluttering-card
+                template: lysbryter
+                variables:
+                  - navn: Gang
+                  - icon: mdi:ceiling-light
+                  - entity: light.tak_gang
+              - type: custom:decluttering-card
+                template: lysbryter
+                variables:
+                  - navn: Bod
+                  - icon: mdi:ceiling-light
+                  - entity: light.tak_bod
+              - type: custom:decluttering-card
+                template: lys-slider
+                variables:
+                  - navn: Bad
+                  - icon: mdi:light-recessed
+                  - entity: light.bad_1_etg
+              - type: custom:decluttering-card
+                template: lysbryter
+                variables:
+                  - navn: Speil Bad
+                  - icon: mdi:mirror-rectangle
+                  - entity: light.speil_bad_1etg
+              - type: custom:decluttering-card
+                template: lys-slider
+                variables:
+                  - navn: Soverom
+                  - icon: mdi:ceiling-light
+                  - entity: light.soverom
+              - type: custom:decluttering-card
+                template: lys-slider
+                variables:
+                  - navn: Kleskap
+                  - icon: mdi:wardrobe
+                  - entity: light.bryter_klesskap
+              - type: custom:decluttering-card
+                template: lys-slider
+                variables:
+                  - navn: Nattbord <br>André
+                  - icon: mdi:wall-sconce
+                  - entity: light.nattlampe_andre
+              - type: custom:decluttering-card
+                template: lys-slider
+                variables:
+                  - navn: Nattbord <br>Martine
+                  - icon: mdi:wall-sconce
+                  - entity: light.nattlampe_martine
+              - type: custom:decluttering-card
+                template: lysbryter
+                variables:
+                  - navn: Gjesterom
+                  - icon: mdi:ceiling-light
+                  - entity: light.taklampe_stort_gjesterom
+              - type: custom:decluttering-card
+                template: lysbryter
+                variables:
+                  - navn: Kontor
+                  - icon: mdi:ceiling-light
+                  - entity: light.taklampe_kontor
+            columns: 2
+          - type: custom:decluttering-card
+            template: seperator
+            variables:
+              - name: 2. etasje
+          - square: false
+            type: grid
+            cards:
+              - type: custom:decluttering-card
+                template: lysbryter
+                variables:
+                  - navn: Trapp
+                  - icon: mdi:ceiling-light
+                  - entity: light.taklampe_trapp
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: light.glasskap
+                    state_not: unavailable
+                card:
+                  type: custom:decluttering-card
+                  template: lysbryter
+                  variables:
+                    - navn: Glasskap
+                    - icon: mdi:glass-wine
+                    - entity: light.glasskap
+              - type: custom:decluttering-card
+                template: lysbryter
+                variables:
+                  - navn: Kjøkkenøy
+                  - icon: mdi:ceiling-light
+                  - entity: light.tak_kjokkenoy
+              - type: custom:decluttering-card
+                template: lysbryter
+                variables:
+                  - navn: LED <br> Kjøkkenøy
+                  - icon: mdi:led-strip-variant
+                  - entity: light.led_kjokkenoy
+              - type: custom:decluttering-card
+                template: lysbryter
+                variables:
+                  - navn: Lampe <br>Skjenk
+                  - icon: mdi:lamp
+                  - entity: light.lampe_skjenk
+              - type: custom:decluttering-card
+                template: lys-slider
+                variables:
+                  - navn: Spisebord
+                  - icon: mdi:vanity-light
+                  - entity: light.spisebord
+              - type: custom:decluttering-card
+                template: lys-slider
+                variables:
+                  - navn: TV-stue
+                  - icon: mdi:ceiling-light
+                  - entity: light.tv_stue
+              - type: custom:decluttering-card
+                template: lysbryter
+                variables:
+                  - navn: LED TV
+                  - icon: mdi:television
+                  - entity: light.led_tv
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: light.juletre
+                    state_not: unavailable
+                card:
+                  type: custom:decluttering-card
+                  template: lysbryter
+                  variables:
+                    - navn: Juletre
+                    - icon: mdi:pine-tree
+                    - entity: light.juletre
+              - type: custom:decluttering-card
+                template: lys-slider
+                variables:
+                  - navn: Bad
+                  - icon: mdi:light-recessed
+                  - entity: light.bad_2_etg
+              - type: custom:decluttering-card
+                template: lysbryter
+                variables:
+                  - navn: Speil Bad
+                  - icon: mdi:mirror
+                  - entity: light.speil_bad_2_etg
+            columns: 2
+          - type: custom:decluttering-card
+            template: seperator
+            variables:
+              - name: Gardiner
+          - type: horizontal-stack
+            cards:
+              - type: custom:bubble-card
+                card_type: button
+                icon: mdi:curtains
+                entity: cover.gardiner_soverom
+                button_type: slider
+                name: Soverom
+                show_state: false
+                styles: |
+                  .range-fill { 
+                    background: var(--accent-color) !important; 
+                  }
+                    ha-card { 
+                    font-size: 12px;
+                  }
+                tap_action:
+                  action: toggle
+              - type: custom:bubble-card
+                card_type: button
+                icon: mdi:blinds
+                entity: cover.rullegardin
+                button_type: slider
+                name: Soverom
+                show_state: false
+                styles: |
+                  .range-fill { 
+                    background: var(--accent-color) !important; 
+                  }
+                    ha-card { 
+                    font-size: 12px;
+                  }
+                tap_action:
+                  action: toggle
+          - type: horizontal-stack
+            cards:
+              - type: custom:bubble-card
+                card_type: button
+                icon: mdi:blinds
+                entity: cover.rullegardin_lite_gjesterom
+                button_type: slider
+                name: Kontor
+                show_state: false
+                styles: |
+                  .range-fill { 
+                    background: var(--accent-color) !important; 
+                  }
+                    ha-card { 
+                    font-size: 12px;
+                  }
+                tap_action:
+                  action: toggle
+              - type: custom:bubble-card
+                card_type: button
+                icon: mdi:blinds
+                entity: cover.rullegardin_stort_gjesterom
+                button_type: slider
+                name: Gjesterom
+                show_state: false
+                styles: |
+                  .range-fill { 
+                    background: var(--accent-color) !important; 
+                  }
+                    ha-card { 
+                    font-size: 12px;
+                  }
+                tap_action:
+                  action: toggle
+        view_layout:
+          grid-area: main
+      - type: custom:mod-card
+        card_mod:
+          style: |
+            ha-card { 
+              z-index: 2;
+              position: fixed;
+              bottom: 36px;
+              left: 10px;
+              width: calc(100% - 20px);
+              background: var(--background-color) !important;
+              padding: 10px;
+              }
+        card:
+          type: grid
+          square: false
+          columns: 1
+          cards:
+            - type: custom:paper-buttons-row
+              buttons:
+                - icon: mdi:home
+                  layout: icon
+                  name: Hjem
+                  tap_action:
+                    action: navigate
+                    navigation_path: home
+                  styles:
+                    button:
+                      background-color: var(--footer-accent-color)
+                      border-radius: 34px
+                      width: 102px
+                      height: 42px
+                    icon:
+                      margin-top: 0
+  - type: vertical-stack
+    cards:
+      - type: custom:bubble-card
+        card_type: pop-up
+        hash: "#strom"
+        name: Strøm
+        back_open: true
+        margin_top_mobile: 0px
+        icon: mdi:lightning-bolt
+      - type: custom:decluttering-card
+        template: seperator
+        variables:
+          - name: Momentan
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            template: sensor
+            name: Forbruk
+            entity: sensor.power_vardane_214
+            icon: mdi:home-lightning-bolt
+          - type: custom:button-card
+            template: sensor
+            name: Pris
+            entity: sensor.electricity_price_vardane_214
+            icon: mdi:cash-100
+      - type: custom:decluttering-card
+        template: seperator
+        variables:
+          - name: Dag
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            template: sensor
+            name: Forbruk
+            entity: sensor.accumulated_consumption_vardane_214
+            icon: mdi:home-lightning-bolt
+          - type: custom:button-card
+            template: sensor
+            name: Kostnad
+            entity: sensor.accumulated_cost_vardane_214
+            icon: mdi:cash-100
+      - type: custom:decluttering-card
+        template: seperator
+        variables:
+          - name: I går
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            template: sensor
+            name: Forbruk
+            entity: input_number.stromforbruk_i_gar
+            icon: mdi:home-lightning-bolt
+          - type: custom:button-card
+            template: sensor
+            name: Kostnad
+            entity: input_number.stromkostnad_i_gar
+            icon: mdi:cash-100
+      - type: custom:decluttering-card
+        template: seperator
+        variables:
+          - name: Månad
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            template: sensor
+            name: Forbruk
+            entity: sensor.monthly_net_consumption_vardane_214
+            icon: mdi:home-lightning-bolt
+          - type: custom:button-card
+            template: sensor
+            name: Kostnad
+            entity: sensor.monthly_cost_vardane_214
+            icon: mdi:cash-100
+      - type: custom:apexcharts-card
+        graph_span: 24h
+        experimental:
+          color_threshold: false
+        apex_config:
+          chart:
+            height: 300px
+          grid:
+            show: true
+            borderColor: var(--gray200)
+        header:
+          show: false
+        span:
+          start: day
+        yaxis:
+          - min: "|-0.1|"
+            max: "|+0.1|"
+            decimals: 1
+            show: true
+        now:
+          show: true
+          label: Nå
+          color: "#ffb581"
+        all_series_config:
+          float_precision: 2
+        series:
+          - entity: sensor.nordpool_kwh_bergen_nok_3_10_025
+            show:
+              extremas: true
+              in_header: false
+              name_in_header: true
+              in_chart: true
+            name: Spotpris
+            type: area
+            curve: smooth
+            extend_to: end
+            stroke_width: 4
+            opacity: 0.3
+            color: "#90bfff"
+            data_generator: |
+              return entity.attributes.raw_today.map((start, index) => {
+                return [new Date(start["start"]).getTime(), entity.attributes.raw_today[index]["value"]];
+              });
+      - type: custom:mod-card
+        card_mod:
+          style: |
+            ha-card { 
+              z-index: 2;
+              position: fixed;
+              bottom: 36px;
+              left: 10px;
+              width: calc(100% - 20px);
+              background: var(--background-color) !important;
+              padding: 10px;
+              }
+        card:
+          type: grid
+          square: false
+          columns: 1
+          cards:
+            - type: custom:paper-buttons-row
+              buttons:
+                - icon: mdi:home
+                  layout: icon
+                  name: Hjem
+                  tap_action:
+                    action: navigate
+                    navigation_path: "#teknisk"
+                  styles:
+                    button:
+                      background-color: var(--footer-accent-color)
+                      border-radius: 34px
+                      width: 102px
+                      height: 42px
+                    icon:
+                      margin-top: 0
+  - type: vertical-stack
+    cards:
+      - type: custom:bubble-card
+        card_type: pop-up
+        hash: "#batteri"
+        name: Batterinivå
+        back_open: true
+        margin_top_mobile: 0px
+        icon: mdi:battery-60
+      - type: custom:battery-state-card
+      - type: custom:mod-card
+        card_mod:
+          style: |
+            ha-card { 
+              z-index: 2;
+              position: fixed;
+              bottom: 36px;
+              left: 10px;
+              width: calc(100% - 20px);
+              background: var(--background-color) !important;
+              padding: 10px;
+              }
+        card:
+          type: grid
+          square: false
+          columns: 1
+          cards:
+            - type: custom:paper-buttons-row
+              buttons:
+                - icon: mdi:home
+                  layout: icon
+                  name: Hjem
+                  tap_action:
+                    action: navigate
+                    navigation_path: "#teknisk"
+                  styles:
+                    button:
+                      background-color: var(--footer-accent-color)
+                      border-radius: 34px
+                      width: 102px
+                      height: 42px
+                    icon:
+                      margin-top: 0
+  - type: vertical-stack
+    cards:
+      - type: custom:bubble-card
+        card_type: pop-up
+        hash: "#automasjon"
+        name: Automasjoner
+        back_open: true
+        margin_top_mobile: 0px
+        icon: mdi:home-automation
+      - type: markdown
+        content: |2-
+                  Tid&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Automasjon
+                  <br>
+                  {% for state in states.automation
+                     |selectattr('attributes.last_triggered', 'defined')
+                     |selectattr('attributes.last_triggered')
+                     |sort(attribute='attributes.last_triggered', reverse=true) -%}
+                   {% if (now() - state.attributes.last_triggered).total_seconds() < 86400 %}
+                     {%- set t = (as_timestamp(state.attributes.last_triggered) | timestamp_custom('%H:%M', true)) -%}
+                     {{t}} &nbsp;&nbsp; _{{state.name}}_
+                   {% endif -%}
+                 {% endfor %}
+      - type: custom:mod-card
+        card_mod:
+          style: |
+            ha-card { 
+              z-index: 2;
+              position: fixed;
+              bottom: 36px;
+              left: 10px;
+              width: calc(100% - 20px);
+              background: var(--background-color) !important;
+              padding: 10px;
+              }
+        card:
+          type: grid
+          square: false
+          columns: 1
+          cards:
+            - type: custom:paper-buttons-row
+              buttons:
+                - icon: mdi:home
+                  layout: icon
+                  name: Hjem
+                  tap_action:
+                    action: navigate
+                    navigation_path: "#teknisk"
+                  styles:
+                    button:
+                      background-color: var(--footer-accent-color)
+                      border-radius: 34px
+                      width: 102px
+                      height: 42px
+                    icon:
+                      margin-top: 0
+  - type: vertical-stack
+    cards:
+      - type: custom:bubble-card
+        card_type: pop-up
+        hash: "#scener"
+        name: Scener
+        back_open: true
+        margin_top_mobile: 0px
+        bg_opacity: "100"
+        icon: mdi:palette
+        bg_blur: "14"
+      - type: custom:layout-card
+        layout_type: custom:vertical-layout
+        layout:
+          height: 70vh
+          margin: 0vh 0vh 0vh
+          padding: 0vh 0.4vh
+        cards:
+          - type: custom:bubble-card
+            card_type: separator
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                name: Tomt kort
+                show_state: false
+                show_label: false
+                show_name: false
+                show_icon: false
+                styles:
+                  grid:
+                    - grid-template-areas: "\"i\" \"n\" \"s\""
+                    - grid-template-columns: auto
+                  card:
+                    - background: none
+                    - margin: 0
+                    - border-radius: 50px
+                    - border-width: 1px
+                    - padding: 20px 5px 20px 5px
+                    - height: 200px
+                    - width: 15px
+                  icon:
+                    - width: 30px
+                    - color: var(--text-color)
+                  img_cell:
+                    - background: var(--background-color)
+                    - border-radius: 100px
+                    - width: 45px
+                    - height: 45px
+                  name:
+                    - justify-self: center
+                    - font-size: 14px
+                    - padding-top: 30px
+                    - font-weight: bold
+                  state:
+                    - justify-self: center
+                    - font-size: 10px
+                    - padding-top: 30px
+                    - opacity: "0.7"
+              - type: custom:button-card
+                name: God <br> natt
+                entity: input_boolean.god_natt
+                show_state: true
+                show_label: false
+                state:
+                  - value: "on"
+                    styles:
+                      card:
+                        - background: var(--accent-color)
+                        - border-color: var(--text-color)
+                  - value: "off"
+                    styles:
+                      card:
+                        - background: var(--background-color-2)
+                        - border-color: var(--background-color)
+                styles:
+                  grid:
+                    - grid-template-areas: "\"i\" \"n\" \"s\""
+                    - grid-template-columns: auto
+                  card:
+                    - margin: 0
+                    - border-radius: 50px
+                    - border-width: 1px
+                    - border-color: var(--text-color)
+                    - padding: 10px 5px 20px 5px
+                    - height: 200px
+                    - width: 100px
+                  icon:
+                    - width: 40px
+                    - color: var(--text-color)
+                  img_cell:
+                    - background: var(--background-color)
+                    - border-radius: 100px
+                    - width: 65px
+                    - height: 65px
+                  name:
+                    - justify-self: center
+                    - font-size: 14px
+                    - padding-top: 30px
+                    - font-weight: bold
+                  state:
+                    - justify-self: center
+                    - font-size: 10px
+                    - padding-top: 30px
+                    - opacity: "0.7"
+              - type: custom:button-card
+                name: Kveldslys <br> i stue
+                entity: input_boolean.kveldslys_stue
+                show_state: true
+                show_label: false
+                state:
+                  - value: "on"
+                    styles:
+                      card:
+                        - background: var(--accent-color)
+                        - border-color: var(--text-color)
+                  - value: "off"
+                    styles:
+                      card:
+                        - background: var(--background-color-2)
+                        - border-color: var(--background-color)
+                styles:
+                  grid:
+                    - grid-template-areas: "\"i\" \"n\" \"s\""
+                    - grid-template-columns: auto
+                  card:
+                    - margin: 0
+                    - border-radius: 50px
+                    - border-width: 1px
+                    - border-color: var(--text-color)
+                    - padding: 10px 5px 20px 5px
+                    - height: 200px
+                    - width: 100px
+                  icon:
+                    - width: 40px
+                    - color: var(--text-color)
+                  img_cell:
+                    - background: var(--background-color)
+                    - border-radius: 100px
+                    - width: 65px
+                    - height: 65px
+                  name:
+                    - justify-self: center
+                    - font-size: 14px
+                    - padding-top: 30px
+                    - font-weight: bold
+                  state:
+                    - justify-self: center
+                    - font-size: 10px
+                    - padding-top: 30px
+                    - opacity: "0.7"
+              - type: custom:button-card
+                name: Fyre i <br> peis
+                entity: input_boolean.fyre_i_peisen
+                show_state: true
+                show_label: false
+                state:
+                  - value: "on"
+                    styles:
+                      card:
+                        - background: var(--accent-color)
+                        - border-color: var(--text-color)
+                  - value: "off"
+                    styles:
+                      card:
+                        - background: var(--background-color-2)
+                        - border-color: var(--background-color)
+                styles:
+                  grid:
+                    - grid-template-areas: "\"i\" \"n\" \"s\""
+                    - grid-template-columns: auto
+                  card:
+                    - margin: 0
+                    - border-radius: 50px
+                    - border-width: 1px
+                    - border-color: var(--text-color)
+                    - padding: 10px 5px 20px 5px
+                    - height: 200px
+                    - width: 100px
+                  icon:
+                    - width: 40px
+                    - color: var(--text-color)
+                  img_cell:
+                    - background: var(--background-color)
+                    - border-radius: 100px
+                    - width: 65px
+                    - height: 65px
+                  name:
+                    - justify-self: center
+                    - font-size: 14px
+                    - padding-top: 30px
+                    - font-weight: bold
+                  state:
+                    - justify-self: center
+                    - font-size: 10px
+                    - padding-top: 30px
+                    - opacity: "0.7"
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                name: Tomt kort
+                show_state: false
+                show_label: false
+                show_name: false
+                show_icon: false
+                styles:
+                  grid:
+                    - grid-template-areas: "\"i\" \"n\" \"s\""
+                    - grid-template-columns: auto
+                  card:
+                    - background: none
+                    - margin: 0
+                    - border-radius: 50px
+                    - border-width: 1px
+                    - padding: 20px 5px 20px 5px
+                    - height: 200px
+                    - width: 15px
+                  icon:
+                    - width: 30px
+                    - color: var(--text-color)
+                  img_cell:
+                    - background: var(--background-color)
+                    - border-radius: 100px
+                    - width: 45px
+                    - height: 45px
+                  name:
+                    - justify-self: center
+                    - font-size: 14px
+                    - padding-top: 30px
+                    - font-weight: bold
+                  state:
+                    - justify-self: center
+                    - font-size: 10px
+                    - padding-top: 30px
+                    - opacity: "0.7"
+              - type: custom:button-card
+                name: Dusje <br> 2. etg
+                entity: input_boolean.dusje_2_etg
+                show_state: true
+                show_label: false
+                state:
+                  - value: "on"
+                    styles:
+                      card:
+                        - background: var(--accent-color)
+                        - border-color: var(--text-color)
+                  - value: "off"
+                    styles:
+                      card:
+                        - background: var(--background-color-2)
+                        - border-color: var(--background-color)
+                styles:
+                  grid:
+                    - grid-template-areas: "\"i\" \"n\" \"s\""
+                    - grid-template-columns: auto
+                  card:
+                    - margin: 0
+                    - border-radius: 50px
+                    - border-width: 1px
+                    - border-color: var(--text-color)
+                    - padding: 10px 5px 20px 5px
+                    - height: 200px
+                    - width: 100px
+                  icon:
+                    - width: 40px
+                    - color: var(--text-color)
+                  img_cell:
+                    - background: var(--background-color)
+                    - border-radius: 100px
+                    - width: 65px
+                    - height: 65px
+                  name:
+                    - justify-self: center
+                    - font-size: 14px
+                    - padding-top: 30px
+                    - font-weight: bold
+                  state:
+                    - justify-self: center
+                    - font-size: 10px
+                    - padding-top: 30px
+                    - opacity: "0.7"
+              - type: custom:button-card
+                name: Ser på <br> sport
+                entity: input_boolean.ser_pa_sport
+                show_state: true
+                show_label: false
+                state:
+                  - value: "on"
+                    styles:
+                      card:
+                        - background: var(--accent-color)
+                        - border-color: var(--text-color)
+                  - value: "off"
+                    styles:
+                      card:
+                        - background: var(--background-color-2)
+                        - border-color: var(--background-color)
+                styles:
+                  grid:
+                    - grid-template-areas: "\"i\" \"n\" \"s\""
+                    - grid-template-columns: auto
+                  card:
+                    - margin: 0
+                    - border-radius: 50px
+                    - border-width: 1px
+                    - border-color: var(--text-color)
+                    - padding: 10px 5px 20px 5px
+                    - height: 200px
+                    - width: 100px
+                  icon:
+                    - width: 40px
+                    - color: var(--text-color)
+                  img_cell:
+                    - background: var(--background-color)
+                    - border-radius: 100px
+                    - width: 65px
+                    - height: 65px
+                  name:
+                    - justify-self: center
+                    - font-size: 14px
+                    - padding-top: 30px
+                    - font-weight: bold
+                  state:
+                    - justify-self: center
+                    - font-size: 10px
+                    - padding-top: 30px
+                    - opacity: "0.7"
+              - type: custom:button-card
+                name: Borte <br> Modus
+                entity: input_boolean.borte_modus
+                show_state: true
+                show_label: false
+                state:
+                  - value: "on"
+                    styles:
+                      card:
+                        - background: var(--accent-color)
+                        - border-color: var(--text-color)
+                  - value: "off"
+                    styles:
+                      card:
+                        - background: var(--background-color-2)
+                        - border-color: var(--background-color)
+                styles:
+                  grid:
+                    - grid-template-areas: "\"i\" \"n\" \"s\""
+                    - grid-template-columns: auto
+                  card:
+                    - margin: 0
+                    - border-radius: 50px
+                    - border-width: 1px
+                    - border-color: var(--text-color)
+                    - padding: 10px 5px 20px 5px
+                    - height: 200px
+                    - width: 100px
+                  icon:
+                    - width: 40px
+                    - color: var(--text-color)
+                  img_cell:
+                    - background: var(--background-color)
+                    - border-radius: 100px
+                    - width: 65px
+                    - height: 65px
+                  name:
+                    - justify-self: center
+                    - font-size: 14px
+                    - padding-top: 30px
+                    - font-weight: bold
+                  state:
+                    - justify-self: center
+                    - font-size: 10px
+                    - padding-top: 30px
+                    - opacity: "0.7"
+        view_layout:
+          grid-area: main
+      - type: custom:mod-card
+        card_mod:
+          style: |
+            ha-card { 
+              z-index: 2;
+              position: fixed;
+              bottom: 36px;
+              left: 10px;
+              width: calc(100% - 20px);
+              background: var(--background-color) !important;
+              padding: 10px;
+              }
+        card:
+          type: grid
+          square: false
+          columns: 1
+          cards:
+            - type: custom:paper-buttons-row
+              buttons:
+                - icon: mdi:home
+                  layout: icon
+                  name: Hjem
+                  tap_action:
+                    action: navigate
+                    navigation_path: home
+                  styles:
+                    button:
+                      background-color: var(--footer-accent-color)
+                      border-radius: 34px
+                      width: 102px
+                      height: 42px
+                    icon:
+                      margin-top: 0
+  - type: vertical-stack
+    cards:
+      - type: custom:bubble-card
+        card_type: pop-up
+        hash: "#media"
+        name: Media
+        back_open: true
+        margin_top_mobile: 0px
+        bg_opacity: "100"
+        icon: mdi:music
+      - type: custom:layout-card
+        layout_type: custom:vertical-layout
+        layout:
+          height: 70vh
+          margin: 0vh 0vh 0vh
+          padding: 0vh 0.4vh
+        cards:
+          - type: custom:button-card
+            name: Søk etter film
+            icon: mdi:movie-open
+            tap_action:
+              action: navigate
+              navigation_path: "#filmer"
+            show_state: true
+            show_label: false
+            styles:
+              img_cell:
+                - background: var(--background-color)
+                - border-radius: 100px
+                - width: 35px
+                - height: 35px
+              grid:
+                - grid-template-areas: "\"i n s\""
+                - grid-template-columns: 40px 1fr 40px
+              card:
+                - background: var(--background-color-2)
+                - border-color: var(--background-color)
+                - margin: 0
+                - border-radius: 50px
+                - border-width: none
+                - border-color: var(--text-color)
+                - padding: 8px 12px 8px 5px
+              icon:
+                - width: 20px
+                - color: var(--text-color)
+                - opacity: 50%
+              name:
+                - justify-self: start
+                - font-size: 12px
+                - padding-left: 10px
+                - font-weight: bold
+              state:
+                - justify-self: start
+                - font-size: 10px
+                - padding-right: 20px
+                - opacity: "0.7"
+          - type: custom:decluttering-card
+            template: seperator
+            variables:
+              - name: Velg Mediaspiller
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                template: mediaplayer
+                name: Apple TV
+                entity: input_boolean.mediaplayer_apple_tv
+              - type: custom:button-card
+                template: mediaplayer
+                name: Kjøkken
+                entity: input_boolean.media_player_kjokken
+              - type: custom:button-card
+                template: mediaplayer
+                name: Bad
+                entity: input_boolean.media_player_bad
+              - type: custom:button-card
+                template: mediaplayer
+                name: Stue
+                entity: input_boolean.mediaplayer_stue
+          - type: conditional
+            conditions:
+              - condition: or
+                conditions:
+                  - condition: state
+                    entity: media_player.living_room
+                    state: playing
+                  - condition: state
+                    entity: media_player.living_room
+                    state: paused
+              - condition: and
+                conditions:
+                  - condition: state
+                    entity: input_select.siste_mediespiller_i_bruk
+                    state: Apple TV
+            card:
+              entity: media_player.living_room
+              type: custom:mini-media-player
+              info: short
+              artwork: full-cover
+              hide:
+                mute: true
+                icon: true
+                power: true
+                controls: false
+                volume: true
+                source: true
+                progress: true
+              toggle_power: true
+              volume_stateless: true
+              group: false
+          - type: conditional
+            conditions:
+              - condition: or
+                conditions:
+                  - condition: state
+                    entity: media_player.kjokken
+                    state: playing
+                  - condition: state
+                    entity: media_player.kjokken
+                    state: paused
+              - condition: and
+                conditions:
+                  - condition: state
+                    entity: input_select.siste_mediespiller_i_bruk
+                    state: Kjøkken
+            card:
+              entity: media_player.kjokken
+              type: custom:mini-media-player
+              info: short
+              artwork: full-cover
+              hide:
+                mute: true
+                icon: true
+                power: true
+                controls: false
+                volume: false
+                source: true
+                progress: true
+              toggle_power: true
+              volume_stateless: true
+              group: false
+          - type: conditional
+            conditions:
+              - condition: or
+                conditions:
+                  - condition: state
+                    entity: media_player.sonos_bad
+                    state: playing
+                  - condition: state
+                    entity: media_player.sonos_bad
+                    state: paused
+              - condition: and
+                conditions:
+                  - condition: state
+                    entity: input_select.siste_mediespiller_i_bruk
+                    state: Bad
+            card:
+              entity: media_player.sonos_bad
+              type: custom:mini-media-player
+              info: short
+              artwork: full-cover
+              hide:
+                mute: true
+                icon: true
+                power: true
+                controls: false
+                volume: false
+                source: true
+                progress: true
+              toggle_power: true
+              volume_stateless: true
+              group: false
+          - type: conditional
+            conditions:
+              - condition: or
+                conditions:
+                  - condition: state
+                    entity: media_player.sonos_stue
+                    state: playing
+                  - condition: state
+                    entity: media_player.sonos_stue
+                    state: paused
+              - condition: and
+                conditions:
+                  - condition: state
+                    entity: input_select.siste_mediespiller_i_bruk
+                    state: Stue
+            card:
+              type: vertical-stack
+              cards:
+                - entity: media_player.sonos_stue
+                  type: custom:mini-media-player
+                  info: short
+                  artwork: full-cover
+                  hide:
+                    mute: true
+                    icon: true
+                    power: true
+                    controls: false
+                    volume: false
+                    source: true
+                    progress: true
+                  toggle_power: true
+                  volume_stateless: true
+                  group: false
+              card_mod:
+                style: |
+                  ha-card::before {
+                    transform: translate3d(0,0,0);
+                    -webkit-transform: translate3d(0,0,0);
+                    {% if not is_state('media_player.sonos_stue', 'idle') and not is_state('media_player.currently_playing', 'off') %}
+                      content: "";
+                      position: absolute;
+                      height: 100%;
+                      width: 100%;
+                      background: url( '{{ state_attr('media_player.sonos_stue', "entity_picture") }}' ) center no-repeat;
+                      filter: blur(150px) saturate(400%);
+                      background-size: 100% 100%;
+                    {% endif %}
+                  }
+                  ha-card {
+                    transform: translate3d(0,0,0);
+                    -webkit-transform: translate3d(0,0,0);
+                    --ha-card-border-width: 0;
+                    {% if not is_state('media_player.sonos_stue', 'idle') and not is_state('media_player.sonos_stue', 'off') %}
+                      background: url( '{{ state_attr("media_player.sonos_stue", "entity_picture") }}' ), linear-gradient(to left, transparent, rgb(var(--rgb-card-background-color)) 50%);
+
+                      {% if state_attr('media_player.sonos_stue', 'media_content_type') == 'tvshow' %}
+                        background-size: auto 100%, cover;
+                      {% else %}
+                        background-size: 50% auto, cover;
+                      {% endif %}
+
+                      background-position: right;
+                      background-repeat: no-repeat;
+                      background-blend-mode: saturation;
+                    {% endif %}
+                  }
+                  :host {
+                    --album-art-color:      
+                    {% if not is_state('media_player.sonos_stue', 'idle') and not is_state('media_player.sonos_stue', 'off') %}
+                      {{ states('sensor.mqtt_vinbrant') }}
+                    {% else %}
+                      var(--rgb-indigo-color)
+                    {% endif %};
+                  }
+          - type: conditional
+            conditions:
+              - entity: input_select.siste_mediespiller_i_bruk
+                state: Bad
+            card:
+              type: vertical-stack
+              cards:
+                - type: custom:bubble-card
+                  card_type: separator
+                - type: custom:bubble-card
+                  card_type: separator
+                  name: Spillelister
+                - type: horizontal-stack
+                  cards:
+                    - type: custom:bubble-card
+                      card_type: button
+                      entity: input_boolean.spilleliste_lounge
+                      name: Lounge
+                    - type: custom:bubble-card
+                      card_type: button
+                      entity: input_boolean.spilleliste_chill
+                      name: Chill
+                      icon: mdi:music-note
+                - type: horizontal-stack
+                  cards:
+                    - type: custom:bubble-card
+                      card_type: button
+                      entity: input_boolean.country
+                      name: Country
+                    - type: custom:bubble-card
+                      card_type: empty-column
+          - type: conditional
+            conditions:
+              - entity: input_select.siste_mediespiller_i_bruk
+                state: Stue
+            card:
+              type: vertical-stack
+              cards:
+                - type: custom:bubble-card
+                  card_type: separator
+                - type: custom:bubble-card
+                  card_type: separator
+                  name: Spillelister
+                - type: horizontal-stack
+                  cards:
+                    - type: custom:bubble-card
+                      card_type: button
+                      entity: input_boolean.spilleliste_lounge
+                      name: Lounge
+                    - type: custom:bubble-card
+                      card_type: button
+                      entity: input_boolean.spilleliste_chill
+                      name: Chill
+                - type: horizontal-stack
+                  cards:
+                    - type: custom:bubble-card
+                      card_type: button
+                      entity: input_boolean.country
+                      name: Country
+                    - type: custom:bubble-card
+                      card_type: empty-column
+          - type: conditional
+            conditions:
+              - condition: state
+                entity: input_select.siste_mediespiller_i_bruk
+                state: Apple TV
+            card:
+              type: horizontal-stack
+              cards:
+                - type: custom:button-card
+                  name: Tomt kort
+                  show_state: false
+                  show_label: false
+                  show_name: false
+                  show_icon: false
+                  styles:
+                    grid:
+                      - grid-template-areas: "\"i\" \"n\" \"s\""
+                      - grid-template-columns: auto
+                    card:
+                      - background: var(--background-color)
+                      - margin: 0
+                      - border-radius: 50px
+                      - border-width: 1px
+                      - padding: 20px 5px 20px 5px
+                      - height: 200px
+                      - width: 15px
+                    icon:
+                      - width: 30px
+                      - color: var(--text-color)
+                    img_cell:
+                      - background: var(--background-color)
+                      - border-radius: 100px
+                      - width: 45px
+                      - height: 45px
+                    name:
+                      - justify-self: center
+                      - font-size: 14px
+                      - padding-top: 30px
+                      - font-weight: bold
+                    state:
+                      - justify-self: center
+                      - font-size: 10px
+                      - padding-top: 30px
+                      - opacity: "0.7"
+                - square: false
+                  type: grid
+                  cards:
+                    - type: custom:decluttering-card
+                      template: serie
+                      variables:
+                        - serie_navn_i_sensor: fallout
+                        - navn_knapp: Fallout
+                        - script: script.fallout
+                        - poster: >-
+                            https://walter.trakt.tv/images/shows/000/163/965/posters/thumb/048a739d1e.jpg.webp
+                    - type: custom:decluttering-card
+                      template: serie
+                      variables:
+                        - serie_navn_i_sensor: parks and recreation
+                        - navn_knapp: Parks and <br> Recreation
+                        - script: script.parks_and_recreation
+                        - poster: >-
+                            https://walter.trakt.tv/images/shows/000/008/546/posters/thumb/4541dc8c8e.jpg.webp
+                    - type: custom:decluttering-card
+                      template: serie
+                      variables:
+                        - serie_navn_i_sensor: adventurous renovation
+                        - navn_knapp: Eventyrlig <br> Oppussing
+                        - script: script.eventyrlig_oppussing
+                        - poster: >-
+                            https://walter.trakt.tv/images/shows/000/138/494/posters/thumb/f1d6d776cd.jpg.webp
+                    - type: custom:decluttering-card
+                      template: serie
+                      variables:
+                        - serie_navn_i_sensor: the curse of oak island
+                        - navn_knapp: Curse of <br> Oak Island
+                        - script: script.curse_of_oak_island
+                        - poster: >-
+                            https://walter.trakt.tv/images/shows/000/060/184/posters/thumb/aaa8658bb7.jpg.webp
+                    - type: custom:decluttering-card
+                      template: serie
+                      variables:
+                        - serie_navn_i_sensor: the rig
+                        - navn_knapp: The Rig
+                        - script: script.the_rig
+                        - poster: >-
+                            https://walter.trakt.tv/images/shows/000/175/827/posters/thumb/70ea8be26e.jpg.webp
+                    - type: custom:decluttering-card
+                      template: serie
+                      variables:
+                        - serie_navn_i_sensor: shōgun
+                        - navn_knapp: Shōgun
+                        - script: script.shogun
+                        - poster: >-
+                            https://walter.trakt.tv/images/shows/000/170/054/posters/thumb/6c986db7d0.jpg.webp
+                    - type: custom:decluttering-card
+                      template: serie
+                      variables:
+                        - serie_navn_i_sensor: a gentleman in moscow
+                        - navn_knapp: Gentleman <br> in Moscow
+                        - script: script.a_gentleman_in_moscow
+                        - poster: >-
+                            https://walter.trakt.tv/images/shows/000/197/769/posters/thumb/6afa7ab747.jpg.webp
+                    - type: custom:decluttering-card
+                      template: serie
+                      variables:
+                        - serie_navn_i_sensor: boligkjøp i blinde
+                        - navn_knapp: Boligkjøp <br> i Blinde
+                        - script: script.boligkjop_i_blinde
+                        - poster: >-
+                            https://walter.trakt.tv/images/shows/000/223/389/posters/thumb/50f80653a2.jpg.webp
+                  columns: 3
+        view_layout:
+          grid-area: main
+      - type: custom:mod-card
+        card_mod:
+          style: |
+            ha-card { 
+              z-index: 2;
+              position: fixed;
+              bottom: 36px;
+              left: 10px;
+              width: calc(100% - 20px);
+              background: var(--background-color) !important;
+              padding: 10px;
+              }
+        card:
+          type: grid
+          square: false
+          columns: 1
+          cards:
+            - type: custom:paper-buttons-row
+              buttons:
+                - icon: mdi:home
+                  layout: icon
+                  name: Hjem
+                  tap_action:
+                    action: navigate
+                    navigation_path: home
+                  styles:
+                    button:
+                      background-color: var(--footer-accent-color)
+                      border-radius: 34px
+                      width: 102px
+                      height: 42px
+                    icon:
+                      margin-top: 0
+  - type: vertical-stack
+    cards:
+      - type: custom:bubble-card
+        card_type: pop-up
+        hash: "#vacuum"
+        name: Støvsuger
+        back_open: true
+        margin_top_mobile: 0px
+        bg_opacity: "100"
+        icon: mdi:robot-vacuum
+      - type: custom:layout-card
+        layout_type: custom:vertical-layout
+        layout:
+          height: 70vh
+          margin: 0vh 0vh 0vh
+          padding: 0vh 0.4vh
+        cards:
+          - type: custom:decluttering-card
+            template: seperator
+            variables:
+              - name: Soner
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                name: Tomt kort
+                show_state: false
+                show_label: false
+                show_name: false
+                show_icon: false
+                styles:
+                  grid:
+                    - grid-template-areas: "\"i\" \"n\" \"s\""
+                    - grid-template-columns: auto
+                  card:
+                    - background: none
+                    - margin: 0
+                    - border-radius: 50px
+                    - border-width: 1px
+                    - padding: 20px 5px 20px 5px
+                    - height: 150px
+                    - width: 45px
+                  icon:
+                    - width: 30px
+                    - color: var(--text-color)
+                  img_cell:
+                    - background: var(--background-color)
+                    - border-radius: 100px
+                    - width: 45px
+                    - height: 45px
+                  name:
+                    - justify-self: center
+                    - font-size: 14px
+                    - padding-top: 30px
+                    - font-weight: bold
+                  state:
+                    - justify-self: center
+                    - font-size: 10px
+                    - padding-top: 30px
+                    - opacity: "0.7"
+              - type: custom:button-card
+                name: 2. etg
+                label: >
+                  [[[ return
+                  states['sensor.vacuum_time_ago'].attributes.second_floor + "
+                  <br> ago" ]]]
+                entity: input_boolean.2_etg
+                show_state: false
+                show_label: true
+                state:
+                  - value: "on"
+                    styles:
+                      card:
+                        - background: var(--accent-color)
+                        - border-color: var(--text-color)
+                  - value: "off"
+                    styles:
+                      card:
+                        - background: var(--background-color-2)
+                        - border-color: var(--background-color)
+                styles:
+                  grid:
+                    - grid-template-areas: "\"i\" \"n\" \"l\""
+                    - grid-template-columns: auto
+                  card:
+                    - margin: 0
+                    - border-radius: 50px
+                    - border-width: 1px
+                    - border-color: var(--text-color)
+                    - padding: 1px 5px 20px 5px
+                    - height: 150px
+                    - width: 80px
+                  icon:
+                    - width: 25px
+                    - color: var(--text-color)
+                  img_cell:
+                    - background: var(--background-color)
+                    - border-radius: 100px
+                    - width: 40px
+                    - height: 40px
+                  name:
+                    - justify-self: center
+                    - font-size: 10px
+                    - padding-top: 5px
+                    - font-weight: bold
+                  label:
+                    - justify-self: center
+                    - font-size: 10px
+                    - padding-top: 5px
+                    - opacity: "0.7"
+              - type: custom:button-card
+                name: Kjøkken
+                label: >
+                  [[[ return states['sensor.vacuum_time_ago'].attributes.kitchen
+                  + " <br> ago" ]]]
+                entity: input_boolean.stovsug_kjokken
+                show_state: false
+                show_label: true
+                state:
+                  - value: "on"
+                    styles:
+                      card:
+                        - background: var(--accent-color)
+                        - border-color: var(--text-color)
+                  - value: "off"
+                    styles:
+                      card:
+                        - background: var(--background-color-2)
+                        - border-color: var(--background-color)
+                styles:
+                  grid:
+                    - grid-template-areas: "\"i\" \"n\" \"l\""
+                    - grid-template-columns: auto
+                  card:
+                    - margin: 0
+                    - border-radius: 50px
+                    - border-width: 1px
+                    - border-color: var(--text-color)
+                    - padding: 1px 5px 20px 5px
+                    - height: 150px
+                    - width: 80px
+                  icon:
+                    - width: 25px
+                    - color: var(--text-color)
+                  img_cell:
+                    - background: var(--background-color)
+                    - border-radius: 100px
+                    - width: 40px
+                    - height: 40px
+                  name:
+                    - justify-self: center
+                    - font-size: 10px
+                    - padding-top: 5px
+                    - font-weight: bold
+                  label:
+                    - justify-self: center
+                    - font-size: 10px
+                    - padding-top: 5px
+                    - opacity: "0.7"
+              - type: custom:button-card
+                name: Spisestue
+                label: >
+                  [[[ return
+                  states['sensor.vacuum_time_ago'].attributes.dining_room + "
+                  <br> ago" ]]]
+                entity: input_boolean.stovsug_spisestue
+                show_state: false
+                show_label: true
+                state:
+                  - value: "on"
+                    styles:
+                      card:
+                        - background: var(--accent-color)
+                        - border-color: var(--text-color)
+                  - value: "off"
+                    styles:
+                      card:
+                        - background: var(--background-color-2)
+                        - border-color: var(--background-color)
+                styles:
+                  grid:
+                    - grid-template-areas: "\"i\" \"n\" \"l\""
+                    - grid-template-columns: auto
+                  card:
+                    - margin: 0
+                    - border-radius: 50px
+                    - border-width: 1px
+                    - border-color: var(--text-color)
+                    - padding: 1px 5px 20px 5px
+                    - height: 150px
+                    - width: 80px
+                  icon:
+                    - width: 25px
+                    - color: var(--text-color)
+                  img_cell:
+                    - background: var(--background-color)
+                    - border-radius: 100px
+                    - width: 40px
+                    - height: 40px
+                  name:
+                    - justify-self: center
+                    - font-size: 10px
+                    - padding-top: 5px
+                    - font-weight: bold
+                  label:
+                    - justify-self: center
+                    - font-size: 10px
+                    - padding-top: 5px
+                    - opacity: "0.7"
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                name: Tomt kort
+                show_state: false
+                show_label: false
+                show_name: false
+                show_icon: false
+                styles:
+                  grid:
+                    - grid-template-areas: "\"i\" \"n\" \"s\""
+                    - grid-template-columns: auto
+                  card:
+                    - background: none
+                    - margin: 0
+                    - border-radius: 50px
+                    - border-width: 1px
+                    - padding: 20px 5px 20px 5px
+                    - height: 150px
+                    - width: 45px
+                  icon:
+                    - width: 30px
+                    - color: var(--text-color)
+                  img_cell:
+                    - background: var(--background-color)
+                    - border-radius: 100px
+                    - width: 45px
+                    - height: 45px
+                  name:
+                    - justify-self: center
+                    - font-size: 14px
+                    - padding-top: 30px
+                    - font-weight: bold
+                  state:
+                    - justify-self: center
+                    - font-size: 10px
+                    - padding-top: 30px
+                    - opacity: "0.7"
+              - type: custom:button-card
+                name: 1. etg
+                label: >
+                  [[[ return
+                  states['sensor.vacuum_time_ago'].attributes.first_floor + "
+                  <br> ago" ]]]
+                entity: input_boolean.stovsug_1_etg
+                show_state: false
+                show_label: true
+                state:
+                  - value: "on"
+                    styles:
+                      card:
+                        - background: var(--accent-color)
+                        - border-color: var(--text-color)
+                  - value: "off"
+                    styles:
+                      card:
+                        - background: var(--background-color-2)
+                        - border-color: var(--background-color)
+                styles:
+                  grid:
+                    - grid-template-areas: "\"i\" \"n\" \"l\""
+                    - grid-template-columns: auto
+                  card:
+                    - margin: 0
+                    - border-radius: 50px
+                    - border-width: 1px
+                    - border-color: var(--text-color)
+                    - padding: 1px 5px 20px 5px
+                    - height: 150px
+                    - width: 80px
+                  icon:
+                    - width: 25px
+                    - color: var(--text-color)
+                  img_cell:
+                    - background: var(--background-color)
+                    - border-radius: 100px
+                    - width: 40px
+                    - height: 40px
+                  name:
+                    - justify-self: center
+                    - font-size: 10px
+                    - padding-top: 5px
+                    - font-weight: bold
+                  label:
+                    - justify-self: center
+                    - font-size: 10px
+                    - padding-top: 5px
+                    - opacity: "0.7"
+              - type: custom:button-card
+                name: Soverom
+                label: >
+                  [[[ return states['sensor.vacuum_time_ago'].attributes.bedroom
+                  + " <br> ago" ]]]
+                entity: input_boolean.stovsug_soverom
+                show_state: false
+                show_label: true
+                state:
+                  - value: "on"
+                    styles:
+                      card:
+                        - background: var(--accent-color)
+                        - border-color: var(--text-color)
+                  - value: "off"
+                    styles:
+                      card:
+                        - background: var(--background-color-2)
+                        - border-color: var(--background-color)
+                styles:
+                  grid:
+                    - grid-template-areas: "\"i\" \"n\" \"l\""
+                    - grid-template-columns: auto
+                  card:
+                    - margin: 0
+                    - border-radius: 50px
+                    - border-width: 1px
+                    - border-color: var(--text-color)
+                    - padding: 1px 5px 20px 5px
+                    - height: 150px
+                    - width: 80px
+                  icon:
+                    - width: 25px
+                    - color: var(--text-color)
+                  img_cell:
+                    - background: var(--background-color)
+                    - border-radius: 100px
+                    - width: 40px
+                    - height: 40px
+                  name:
+                    - justify-self: center
+                    - font-size: 10px
+                    - padding-top: 5px
+                    - font-weight: bold
+                  label:
+                    - justify-self: center
+                    - font-size: 10px
+                    - padding-top: 5px
+                    - opacity: "0.7"
+              - type: custom:button-card
+                name: Bad
+                label: >
+                  [[[ return
+                  states['sensor.vacuum_time_ago'].attributes.bathroom + " <br>
+                  ago" ]]]
+                entity: input_boolean.stovsug_bad
+                show_state: false
+                show_label: true
+                state:
+                  - value: "on"
+                    styles:
+                      card:
+                        - background: var(--accent-color)
+                        - border-color: var(--text-color)
+                  - value: "off"
+                    styles:
+                      card:
+                        - background: var(--background-color-2)
+                        - border-color: var(--background-color)
+                styles:
+                  grid:
+                    - grid-template-areas: "\"i\" \"n\" \"l\""
+                    - grid-template-columns: auto
+                  card:
+                    - margin: 0
+                    - border-radius: 50px
+                    - border-width: 1px
+                    - border-color: var(--text-color)
+                    - padding: 1px 5px 20px 5px
+                    - height: 150px
+                    - width: 80px
+                  icon:
+                    - width: 25px
+                    - color: var(--text-color)
+                  img_cell:
+                    - background: var(--background-color)
+                    - border-radius: 100px
+                    - width: 40px
+                    - height: 40px
+                  name:
+                    - justify-self: center
+                    - font-size: 10px
+                    - padding-top: 5px
+                    - font-weight: bold
+                  label:
+                    - justify-self: center
+                    - font-size: 10px
+                    - padding-top: 5px
+                    - opacity: "0.7"
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                name: Tomt kort
+                show_state: false
+                show_label: false
+                show_name: false
+                show_icon: false
+                styles:
+                  grid:
+                    - grid-template-areas: "\"i\" \"n\" \"s\""
+                    - grid-template-columns: auto
+                  card:
+                    - background: none
+                    - margin: 0
+                    - border-radius: 50px
+                    - border-width: 1px
+                    - padding: 20px 5px 20px 5px
+                    - height: 150px
+                    - width: 45px
+                  icon:
+                    - width: 30px
+                    - color: var(--text-color)
+                  img_cell:
+                    - background: var(--background-color)
+                    - border-radius: 100px
+                    - width: 45px
+                    - height: 45px
+                  name:
+                    - justify-self: center
+                    - font-size: 14px
+                    - padding-top: 30px
+                    - font-weight: bold
+                  state:
+                    - justify-self: center
+                    - font-size: 10px
+                    - padding-top: 30px
+                    - opacity: "0.7"
+              - type: custom:button-card
+                name: Gang
+                label: >
+                  [[[ return states['sensor.vacuum_time_ago'].attributes.hallway
+                  + " <br> ago" ]]]
+                entity: input_boolean.stovsug_gang
+                show_state: false
+                show_label: true
+                state:
+                  - value: "on"
+                    styles:
+                      card:
+                        - background: var(--accent-color)
+                        - border-color: var(--text-color)
+                  - value: "off"
+                    styles:
+                      card:
+                        - background: var(--background-color-2)
+                        - border-color: var(--background-color)
+                styles:
+                  grid:
+                    - grid-template-areas: "\"i\" \"n\" \"l\""
+                    - grid-template-columns: auto
+                  card:
+                    - margin: 0
+                    - border-radius: 50px
+                    - border-width: 1px
+                    - border-color: var(--text-color)
+                    - padding: 1px 5px 20px 5px
+                    - height: 150px
+                    - width: 80px
+                  icon:
+                    - width: 25px
+                    - color: var(--text-color)
+                  img_cell:
+                    - background: var(--background-color)
+                    - border-radius: 100px
+                    - width: 40px
+                    - height: 40px
+                  name:
+                    - justify-self: center
+                    - font-size: 10px
+                    - padding-top: 5px
+                    - font-weight: bold
+                  label:
+                    - justify-self: center
+                    - font-size: 10px
+                    - padding-top: 5px
+                    - opacity: "0.7"
+              - type: custom:button-card
+                name: Kontor
+                label: >
+                  [[[ return states['sensor.vacuum_time_ago'].attributes.office
+                  + " <br> ago" ]]]
+                entity: input_boolean.stovsug_kontor
+                show_state: false
+                show_label: true
+                state:
+                  - value: "on"
+                    styles:
+                      card:
+                        - background: var(--accent-color)
+                        - border-color: var(--text-color)
+                  - value: "off"
+                    styles:
+                      card:
+                        - background: var(--background-color-2)
+                        - border-color: var(--background-color)
+                styles:
+                  grid:
+                    - grid-template-areas: "\"i\" \"n\" \"l\""
+                    - grid-template-columns: auto
+                  card:
+                    - margin: 0
+                    - border-radius: 50px
+                    - border-width: 1px
+                    - border-color: var(--text-color)
+                    - padding: 1px 5px 20px 5px
+                    - height: 150px
+                    - width: 80px
+                  icon:
+                    - width: 25px
+                    - color: var(--text-color)
+                  img_cell:
+                    - background: var(--background-color)
+                    - border-radius: 100px
+                    - width: 40px
+                    - height: 40px
+                  name:
+                    - justify-self: center
+                    - font-size: 10px
+                    - padding-top: 5px
+                    - font-weight: bold
+                  label:
+                    - justify-self: center
+                    - font-size: 10px
+                    - padding-top: 5px
+                    - opacity: "0.7"
+              - type: custom:button-card
+                name: Gjesterom
+                label: >
+                  [[[ return
+                  states['sensor.vacuum_time_ago'].attributes.guest_room + "
+                  <br> ago" ]]]
+                entity: input_boolean.stovsug_gjesterom
+                show_state: false
+                show_label: true
+                state:
+                  - value: "on"
+                    styles:
+                      card:
+                        - background: var(--accent-color)
+                        - border-color: var(--text-color)
+                  - value: "off"
+                    styles:
+                      card:
+                        - background: var(--background-color-2)
+                        - border-color: var(--background-color)
+                styles:
+                  grid:
+                    - grid-template-areas: "\"i\" \"n\" \"l\""
+                    - grid-template-columns: auto
+                  card:
+                    - margin: 0
+                    - border-radius: 50px
+                    - border-width: 1px
+                    - border-color: var(--text-color)
+                    - padding: 1px 5px 20px 5px
+                    - height: 150px
+                    - width: 80px
+                  icon:
+                    - width: 25px
+                    - color: var(--text-color)
+                  img_cell:
+                    - background: var(--background-color)
+                    - border-radius: 100px
+                    - width: 40px
+                    - height: 40px
+                  name:
+                    - justify-self: center
+                    - font-size: 10px
+                    - padding-top: 5px
+                    - font-weight: bold
+                  label:
+                    - justify-self: center
+                    - font-size: 10px
+                    - padding-top: 5px
+                    - opacity: "0.7"
+          - type: custom:decluttering-card
+            template: seperator
+            variables:
+              - name: Anna
+          - type: horizontal-stack
+            cards:
+              - type: custom:bubble-card
+                card_type: button
+                entity: input_boolean.stovsuger_parker
+                name: Parker
+              - type: custom:bubble-card
+                card_type: button
+                entity: input_boolean.stovsuger_kom_frem
+                name: Kom frem
+          - type: horizontal-stack
+            cards:
+              - type: custom:bubble-card
+                card_type: button
+                entity: input_boolean.vaske_gulv
+                name: Vask
+              - type: custom:bubble-card
+                card_type: button
+                entity: input_boolean.send_til_bossspann
+                name: Tøm
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                name: Areal
+                icon: mdi:texture-box
+                entity: input_number.areal_stovsugd
+                show_state: true
+                show_label: false
+                styles:
+                  img_cell:
+                    - background: var(--background-color)
+                    - border-radius: 100px
+                    - width: 35px
+                    - height: 35px
+                  grid:
+                    - grid-template-areas: |
+                        "i n"
+                        "i s"
+                    - grid-template-columns: 40px 1fr 40px
+                  card:
+                    - background: var(--background-color-2)
+                    - border-color: var(--background-color)
+                    - margin: 0
+                    - border-radius: 50px
+                    - border-width: none
+                    - border-color: var(--text-color)
+                    - padding: 8px 12px 8px 5px
+                  icon:
+                    - width: 20px
+                    - color: var(--text-color)
+                    - opacity: 50%
+                  name:
+                    - justify-self: start
+                    - font-size: 14px
+                    - padding-left: 10px
+                    - font-weight: bold
+                  state:
+                    - justify-self: start
+                    - font-size: 12px
+                    - padding-left: 10px
+                    - opacity: "0.7"
+              - type: custom:bubble-card
+                card_type: empty-column
+                entity: input_number.areal_stovsugd
+                name: Areal
+                show_state: true
+        view_layout:
+          grid-area: main
+      - type: custom:mod-card
+        card_mod:
+          style: |
+            ha-card { 
+              z-index: 2;
+              position: fixed;
+              bottom: 36px;
+              left: 10px;
+              width: calc(100% - 20px);
+              background: var(--background-color) !important;
+              padding: 10px;
+              }
+        card:
+          type: grid
+          square: false
+          columns: 1
+          cards:
+            - type: custom:paper-buttons-row
+              buttons:
+                - icon: mdi:home
+                  layout: icon
+                  name: Hjem
+                  tap_action:
+                    action: navigate
+                    navigation_path: home
+                  styles:
+                    button:
+                      background-color: var(--footer-accent-color)
+                      border-radius: 34px
+                      width: 102px
+                      height: 42px
+                    icon:
+                      margin-top: 0
+  - type: vertical-stack
+    cards:
+      - type: custom:bubble-card
+        card_type: pop-up
+        hash: "#klima"
+        name: Klima
+        back_open: true
+        margin_top_mobile: 0px
+        bg_opacity: "100"
+        icon: mdi:thermometer
+      - type: custom:layout-card
+        layout_type: custom:vertical-layout
+        layout:
+          height: 70vh
+          margin: 0vh 0vh 0vh
+          padding: 0vh 0.4vh
+        cards:
+          - type: custom:decluttering-card
+            template: termostat_ventilasjon
+            variables:
+              - navn: Ventilasjon
+              - icon: mdi:air-filter
+              - entity: climate.vent_vsr500
+          - type: custom:decluttering-card
+            template: termostat
+            variables:
+              - navn: Varmekabler Bad 2. etg
+              - icon: mdi:heating-coil
+              - entity: climate.varmekabler_bad_2_etg
+          - type: custom:decluttering-card
+            template: termostat
+            variables:
+              - navn: Varmeovn Stue
+              - icon: mdi:radiator
+              - entity: climate.ovn_stue
+          - type: horizontal-stack
+            cards:
+              - type: custom:stack-in-card
+                card_mod:
+                  style: |
+                    ha-card { 
+                      background: var(--background-color-2) !important;
+                    }
+                cards:
+                  - type: custom:mushroom-entity-card
+                    entity: sensor.stue_stue
+                    primary_info: state
+                    secondary_info: name
+                    name: Stue
+                    icon: mdi:thermometer
+                    icon_color: green
+                    card_mod:
+                      style: |
+                        ha-card {
+                          --card-primary-font-size: 12px;
+                          --card-secondary-font-size: 12px;
+                        }
+                  - type: custom:mini-graph-card
+                    entities:
+                      - entity: sensor.stue_stue
+                        name: Stue
+                        color: "#00bb33"
+                    hours_to_show: 24
+                    line_width: 3
+                    font_size: 50
+                    animate: true
+                    show:
+                      name: false
+                      icon: false
+                      state: false
+                      legend: false
+                      fill: fade
+              - type: custom:stack-in-card
+                card_mod:
+                  style: |
+                    ha-card { 
+                      background: var(--background-color-2) !important;
+                    }
+                background: false
+                cards:
+                  - type: grid
+                    square: false
+                    columns: 1
+                    cards:
+                      - type: custom:mushroom-entity-card
+                        entity: sensor.gang_gang
+                        primary_info: state
+                        secondary_info: name
+                        name: Gang
+                        icon: mdi:thermometer
+                        icon_color: green
+                        card_mod:
+                          style: |
+                            ha-card {
+                              --card-primary-font-size: 12px;
+                              --card-secondary-font-size: 12px;
+                  - type: custom:mini-graph-card
+                    entities:
+                      - entity: sensor.gang_gang
+                        name: Gang
+                        color: "#00bb33"
+                    hours_to_show: 24
+                    line_width: 3
+                    font_size: 50
+                    animate: true
+                    show:
+                      name: false
+                      icon: false
+                      state: false
+                      legend: false
+                      fill: fade
+          - type: custom:stack-in-card
+            card_mod:
+              style: |
+                ha-card { 
+                  background: var(--background-color-2) !important;
+                }
+            background: false
+            cards:
+              - type: grid
+                square: false
+                columns: 2
+                cards:
+                  - type: custom:mushroom-entity-card
+                    entity: sensor.temperature_sensor_2
+                    primary_info: state
+                    secondary_info: name
+                    name: Soverom
+                    icon: mdi:thermometer
+                    icon_color: green
+                    card_mod:
+                      style: |
+                        ha-card {
+                          --card-primary-font-size: 12px;
+                          --card-secondary-font-size: 12px;
+                  - type: custom:mushroom-entity-card
+                    entity: sensor.temperature_sensor_humidity_sensor_2
+                    primary_info: state
+                    secondary_info: name
+                    name: Soverom
+                    icon: mdi:water-percent
+                    icon_color: blue
+                    card_mod:
+                      style: |
+                        ha-card {
+                          --card-primary-font-size: 12px;
+                          --card-secondary-font-size: 12px;
+              - type: custom:mini-graph-card
+                entities:
+                  - entity: sensor.temperature_sensor_2
+                    name: Soverom
+                    color: "#00bb33"
+                  - entity: sensor.temperature_sensor_humidity_sensor_2
+                    name: Soverom
+                    color: "#2196f3"
+                    y_axis: secondary
+                hours_to_show: 24
+                line_width: 3
+                font_size: 50
+                animate: true
+                show:
+                  name: false
+                  icon: false
+                  state: false
+                  legend: false
+                  fill: fade
+          - type: custom:stack-in-card
+            card_mod:
+              style: |
+                ha-card { 
+                  background: var(--background-color-2) !important;
+                }
+            background: false
+            cards:
+              - type: grid
+                square: false
+                columns: 2
+                cards:
+                  - type: custom:mushroom-entity-card
+                    entity: sensor.temperature_sensor_4
+                    primary_info: state
+                    secondary_info: name
+                    name: Bad 1. etg
+                    icon: mdi:thermometer
+                    icon_color: green
+                    card_mod:
+                      style: |
+                        ha-card {
+                          --card-primary-font-size: 12px;
+                          --card-secondary-font-size: 12px;
+                  - type: custom:mushroom-entity-card
+                    entity: sensor.temperature_sensor_humidity_sensor_4
+                    primary_info: state
+                    secondary_info: name
+                    name: Bad 1. etg
+                    icon: mdi:water-percent
+                    icon_color: blue
+                    card_mod:
+                      style: |
+                        ha-card {
+                          --card-primary-font-size: 12px;
+                          --card-secondary-font-size: 12px;
+              - type: custom:mini-graph-card
+                entities:
+                  - entity: sensor.temperature_sensor_4
+                    name: Bad 1. etg
+                    color: "#00bb33"
+                  - entity: sensor.temperature_sensor_humidity_sensor_4
+                    name: Bad 1. etg
+                    color: "#2196f3"
+                    y_axis: secondary
+                hours_to_show: 24
+                line_width: 3
+                font_size: 50
+                animate: true
+                show:
+                  name: false
+                  icon: false
+                  state: false
+                  legend: false
+                  fill: fade
+          - type: custom:stack-in-card
+            card_mod:
+              style: |
+                ha-card { 
+                  background: var(--background-color-2) !important;
+                }
+            background: fals
+            cards:
+              - type: grid
+                square: false
+                columns: 2
+                cards:
+                  - type: custom:mushroom-entity-card
+                    entity: sensor.temperature_sensor_3
+                    primary_info: state
+                    secondary_info: name
+                    name: Bad 2. etg
+                    icon: mdi:thermometer
+                    icon_color: green
+                    card_mod:
+                      style: |
+                        ha-card {
+                          --card-primary-font-size: 12px;
+                          --card-secondary-font-size: 12px;
+                  - type: custom:mushroom-entity-card
+                    entity: sensor.temperature_sensor_humidity_sensor_3
+                    primary_info: state
+                    secondary_info: name
+                    name: Bad 2. etg
+                    icon: mdi:water-percent
+                    icon_color: blue
+                    card_mod:
+                      style: |
+                        ha-card {
+                          --card-primary-font-size: 12px;
+                          --card-secondary-font-size: 12px;
+              - type: custom:mini-graph-card
+                entities:
+                  - entity: sensor.temperature_sensor_3
+                    name: Bad 2. etg
+                    color: "#00bb33"
+                  - entity: sensor.temperature_sensor_humidity_sensor_3
+                    name: Bad 2. etg
+                    color: "#2196f3"
+                    y_axis: secondary
+                hours_to_show: 24
+                line_width: 3
+                font_size: 50
+                animate: true
+                show:
+                  name: false
+                  icon: false
+                  state: false
+                  legend: false
+                  fill: fade
+        view_layout:
+          grid-area: main
+      - type: custom:mod-card
+        card_mod:
+          style: |
+            ha-card { 
+              z-index: 2;
+              position: fixed;
+              bottom: 36px;
+              left: 10px;
+              width: calc(100% - 20px);
+              background: var(--background-color) !important;
+              padding: 10px;
+              }
+        card:
+          type: grid
+          square: false
+          columns: 1
+          cards:
+            - type: custom:paper-buttons-row
+              buttons:
+                - icon: mdi:home
+                  layout: icon
+                  name: Hjem
+                  tap_action:
+                    action: navigate
+                    navigation_path: home
+                  styles:
+                    button:
+                      background-color: var(--footer-accent-color)
+                      border-radius: 34px
+                      width: 102px
+                      height: 42px
+                    icon:
+                      margin-top: 0
+  - type: vertical-stack
+    cards:
+      - type: custom:bubble-card
+        card_type: pop-up
+        hash: "#filmer"
+        name: Søk etter filmer
+        back_open: true
+        margin_top_mobile: 0px
+        bg_opacity: "100"
+        icon: mdi:movie-open
+      - type: entities
+        entities:
+          - input_text.movie_search
+      - type: custom:layout-card
+        layout_type: custom:vertical-layout
+        layout:
+          height: 70vh
+          margin: 0vh 0vh 0vh
+          padding: 0vh 0.4vh
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.movie_title
+                    state_not: " ()"
+                card:
+                  type: horizontal-stack
+                  cards:
+                    - type: custom:button-card
+                      name: Movie Poster
+                      show_name: false
+                      show_entity_picture: false
+                      styles:
+                        card:
+                          - width: 100px
+                          - height: 150px
+                          - background-size: cover
+                          - background-position: center
+                          - margin-top: 65px
+                      tap_action:
+                        action: none
+                      hold_action:
+                        action: none
+                      double_tap_action:
+                        action: none
+                      card_mod:
+                        style: |
+                          ha-card {
+                            background-image: url('{{ states("input_text.movie_poster") }}');
+                          }
+                    - type: markdown
+                      content: >-
+                        <b><font size=6>{{ states("input_text.movie_title")
+                        }}<br></b>
+
+
+                        <font size=4>
+
+                        Plot:
+
+                        {{ states("input_text.movie_overview") }}<br>
+
+
+                        Strømmetjeneste:
+
+                        {{ states("input_text.movie_streaming_info") }}
+              - type: conditional
+                conditions:
+                  - condition: and
+                    conditions:
+                      - condition: state
+                        entity: input_text.movie_title
+                        state_not: " ()"
+                      - condition: state
+                        entity: input_text.movie_streaming_info
+                        state: Ikke tilgjengelig for strømming i Norge.
+                card:
+                  type: custom:bubble-card
+                  card_type: button
+                  entity: input_boolean.movie_add_to_radarr
+                  icon: mdi:movie-check-outline
+                  name: Legg til i Radarr
+          - type: vertical-stack
+            cards:
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.movie_title_2
+                    state_not: " ()"
+                card:
+                  type: horizontal-stack
+                  cards:
+                    - type: custom:button-card
+                      name: Movie Poster
+                      show_name: false
+                      show_entity_picture: false
+                      styles:
+                        card:
+                          - width: 100px
+                          - height: 150px
+                          - background-size: cover
+                          - background-position: center
+                          - margin-top: 65px
+                      tap_action:
+                        action: none
+                      hold_action:
+                        action: none
+                      double_tap_action:
+                        action: none
+                      card_mod:
+                        style: |
+                          ha-card {
+                            background-image: url('{{ states("input_text.movie_poster_2") }}');
+                          }
+                    - type: markdown
+                      content: >-
+                        <b><font size=6>{{ states("input_text.movie_title_2")
+                        }}<br></b>
+
+
+                        <font size=4>
+
+                        Plot:
+
+                        {{ states("input_text.movie_overview_2") }}<br>
+
+
+                        Strømmetjeneste:
+
+                        {{ states("input_text.movie_streaming_info_2") }}
+              - type: conditional
+                conditions:
+                  - condition: and
+                    conditions:
+                      - condition: state
+                        entity: input_text.movie_title_2
+                        state_not: " ()"
+                      - condition: state
+                        entity: input_text.movie_streaming_info_2
+                        state: Ikke tilgjengelig for strømming i Norge.
+                card:
+                  type: custom:bubble-card
+                  card_type: button
+                  entity: input_boolean.movie_add_to_radarr_2
+                  icon: mdi:movie-check-outline
+                  name: Legg til i Radarr
+          - type: vertical-stack
+            cards:
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.movie_title_3
+                    state_not: " ()"
+                card:
+                  type: horizontal-stack
+                  cards:
+                    - type: custom:button-card
+                      name: Movie Poster
+                      show_name: false
+                      show_entity_picture: false
+                      styles:
+                        card:
+                          - width: 100px
+                          - height: 150px
+                          - background-size: cover
+                          - background-position: center
+                          - margin-top: 65px
+                      tap_action:
+                        action: none
+                      hold_action:
+                        action: none
+                      double_tap_action:
+                        action: none
+                      card_mod:
+                        style: |
+                          ha-card {
+                            background-image: url('{{ states("input_text.movie_poster_3") }}');
+                          }
+                    - type: markdown
+                      content: >-
+                        <b><font size=6>{{ states("input_text.movie_title_3")
+                        }}<br></b>
+
+
+                        <font size=4>
+
+                        Plot:
+
+                        {{ states("input_text.movie_overview_3") }}<br>
+
+
+                        Strømmetjeneste:
+
+                        {{ states("input_text.movie_streaming_info_3") }}
+              - type: conditional
+                conditions:
+                  - condition: and
+                    conditions:
+                      - condition: state
+                        entity: input_text.movie_title_3
+                        state_not: " ()"
+                      - condition: state
+                        entity: input_text.movie_streaming_info_3
+                        state: Ikke tilgjengelig for strømming i Norge.
+                card:
+                  type: custom:bubble-card
+                  card_type: button
+                  entity: input_boolean.movie_add_to_radarr_3
+                  icon: mdi:movie-check-outline
+                  name: Legg til i Radarr
+          - type: vertical-stack
+            cards:
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.movie_title_4
+                    state_not: " ()"
+                card:
+                  type: horizontal-stack
+                  cards:
+                    - type: custom:button-card
+                      name: Movie Poster
+                      show_name: false
+                      show_entity_picture: false
+                      styles:
+                        card:
+                          - width: 100px
+                          - height: 150px
+                          - background-size: cover
+                          - background-position: center
+                          - margin-top: 65px
+                      tap_action:
+                        action: none
+                      hold_action:
+                        action: none
+                      double_tap_action:
+                        action: none
+                      card_mod:
+                        style: |
+                          ha-card {
+                            background-image: url('{{ states("input_text.movie_poster_4") }}');
+                          }
+                    - type: markdown
+                      content: >-
+                        <b><font size=6>{{ states("input_text.movie_title_4")
+                        }}<br></b>
+
+
+                        <font size=4>
+
+                        Plot:
+
+                        {{ states("input_text.movie_overview_4") }}<br>
+
+
+                        Strømmetjeneste:
+
+                        {{ states("input_text.movie_streaming_info_4") }}
+              - type: conditional
+                conditions:
+                  - condition: and
+                    conditions:
+                      - condition: state
+                        entity: input_text.movie_title_4
+                        state_not: " ()"
+                      - condition: state
+                        entity: input_text.movie_streaming_info_4
+                        state: Ikke tilgjengelig for strømming i Norge.
+                card:
+                  type: custom:bubble-card
+                  card_type: button
+                  entity: input_boolean.movie_add_to_radarr_4
+                  icon: mdi:movie-check-outline
+                  name: Legg til i Radarr
+          - type: vertical-stack
+            cards:
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.movie_title_5
+                    state_not: " ()"
+                card:
+                  type: horizontal-stack
+                  cards:
+                    - type: custom:button-card
+                      name: Movie Poster
+                      show_name: false
+                      show_entity_picture: false
+                      styles:
+                        card:
+                          - width: 100px
+                          - height: 150px
+                          - background-size: cover
+                          - background-position: center
+                          - margin-top: 65px
+                      tap_action:
+                        action: none
+                      hold_action:
+                        action: none
+                      double_tap_action:
+                        action: none
+                      card_mod:
+                        style: |
+                          ha-card {
+                            background-image: url('{{ states("input_text.movie_poster_5") }}');
+                          }
+                    - type: markdown
+                      content: >-
+                        <b><font size=6>{{ states("input_text.movie_title_5")
+                        }}<br></b>
+
+
+                        <font size=4>
+
+                        Plot:
+
+                        {{ states("input_text.movie_overview_5") }}<br>
+
+
+                        Strømmetjeneste:
+
+                        {{ states("input_text.movie_streaming_info_5") }}
+              - type: conditional
+                conditions:
+                  - condition: and
+                    conditions:
+                      - condition: state
+                        entity: input_text.movie_title_5
+                        state_not: " ()"
+                      - condition: state
+                        entity: input_text.movie_streaming_info_5
+                        state: Ikke tilgjengelig for strømming i Norge.
+                card:
+                  type: custom:bubble-card
+                  card_type: button
+                  entity: input_boolean.movie_add_to_radarr_5
+                  icon: mdi:movie-check-outline
+                  name: Legg til i Radarr
+          - type: vertical-stack
+            cards:
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.movie_title_6
+                    state_not: " ()"
+                card:
+                  type: horizontal-stack
+                  cards:
+                    - type: custom:button-card
+                      name: Movie Poster
+                      show_name: false
+                      show_entity_picture: false
+                      styles:
+                        card:
+                          - width: 100px
+                          - height: 150px
+                          - background-size: cover
+                          - background-position: center
+                          - margin-top: 65px
+                      tap_action:
+                        action: none
+                      hold_action:
+                        action: none
+                      double_tap_action:
+                        action: none
+                      card_mod:
+                        style: |
+                          ha-card {
+                            background-image: url('{{ states("input_text.movie_poster_6") }}');
+                          }
+                    - type: markdown
+                      content: >-
+                        <b><font size=6>{{ states("input_text.movie_title_6")
+                        }}<br></b>
+
+
+                        <font size=4>
+
+                        Plot:
+
+                        {{ states("input_text.movie_overview_6") }}<br>
+
+
+                        Strømmetjeneste:
+
+                        {{ states("input_text.movie_streaming_info_6") }}
+              - type: conditional
+                conditions:
+                  - condition: and
+                    conditions:
+                      - condition: state
+                        entity: input_text.movie_title_6
+                        state_not: " ()"
+                      - condition: state
+                        entity: input_text.movie_streaming_info_6
+                        state: Ikke tilgjengelig for strømming i Norge.
+                card:
+                  type: custom:bubble-card
+                  card_type: button
+                  entity: input_boolean.movie_add_to_radarr_6
+                  icon: mdi:movie-check-outline
+                  name: Legg til i Radarr
+          - type: vertical-stack
+            cards:
+              - type: conditional
+                conditions:
+                  - condition: state
+                    entity: input_text.movie_title_7
+                    state_not: " ()"
+                card:
+                  type: horizontal-stack
+                  cards:
+                    - type: custom:button-card
+                      name: Movie Poster
+                      show_name: false
+                      show_entity_picture: false
+                      styles:
+                        card:
+                          - width: 100px
+                          - height: 150px
+                          - background-size: cover
+                          - background-position: center
+                          - margin-top: 65px
+                      tap_action:
+                        action: none
+                      hold_action:
+                        action: none
+                      double_tap_action:
+                        action: none
+                      card_mod:
+                        style: |
+                          ha-card {
+                            background-image: url('{{ states("input_text.movie_poster_7") }}');
+                          }
+                    - type: markdown
+                      content: >-
+                        <b><font size=6>{{ states("input_text.movie_title_7")
+                        }}<br></b>
+
+
+                        <font size=4>
+
+                        Plot:
+
+                        {{ states("input_text.movie_overview_7") }}<br>
+
+
+                        Strømmetjeneste:
+
+                        {{ states("input_text.movie_streaming_info_7") }}
+              - type: conditional
+                conditions:
+                  - condition: and
+                    conditions:
+                      - condition: state
+                        entity: input_text.movie_title_7
+                        state_not: " ()"
+                      - condition: state
+                        entity: input_text.movie_streaming_info_7
+                        state: Ikke tilgjengelig for strømming i Norge.
+                card:
+                  type: custom:bubble-card
+                  card_type: button
+                  entity: input_boolean.movie_add_to_radarr_7
+                  icon: mdi:movie-check-outline
+                  name: Legg til i Radarr
+        visibility:
+          - condition: state
+            entity: input_text.movie_search
+            state_not: Søk etter film
+        view_layout:
+          grid-area: main
+      - type: custom:mod-card
+        card_mod:
+          style: |
+            ha-card { 
+              z-index: 2;
+              position: fixed;
+              bottom: 36px;
+              left: 10px;
+              width: calc(100% - 20px);
+              background: var(--background-color) !important;
+              padding: 10px;
+              }
+        card:
+          type: grid
+          square: false
+          columns: 1
+          cards:
+            - type: custom:paper-buttons-row
+              buttons:
+                - icon: mdi:home
+                  layout: icon
+                  name: Hjem
+                  tap_action:
+                    action: navigate
+                    navigation_path: "#media"
+                  styles:
+                    button:
+                      background-color: var(--footer-accent-color)
+                      border-radius: 34px
+                      width: 102px
+                      height: 42px
+                    icon:
+                      margin-top: 0
+  - type: vertical-stack
+    cards:
+      - type: custom:bubble-card
+        card_type: pop-up
+        hash: "#reiserute"
+        name: Reiserute
+        back_open: true
+        margin_top_mobile: 0px
+        bg_opacity: "100"
+        icon: mdi:bus-clock
+      - type: entities
+        entities:
+          - input_text.ankomsttid
+      - type: custom:mod-card
+        card_mod:
+          style: |
+            ha-card { 
+              z-index: 2;
+              position: fixed;
+              bottom: 36px;
+              left: 10px;
+              width: calc(100% - 20px);
+              background: var(--background-color) !important;
+              padding: 10px;
+              }
+        card:
+          type: grid
+          square: false
+          columns: 1
+          cards:
+            - type: custom:paper-buttons-row
+              buttons:
+                - icon: mdi:home
+                  layout: icon
+                  name: Hjem
+                  tap_action:
+                    action: navigate
+                    navigation_path: home
+                  styles:
+                    button:
+                      background-color: var(--footer-accent-color)
+                      border-radius: 34px
+                      width: 102px
+                      height: 42px
+                    icon:
+                      margin-top: 0
+  - type: vertical-stack
+    cards:
+      - type: custom:bubble-card
+        card_type: pop-up
+        hash: "#kalender"
+        name: Kalender
+        back_open: true
+        margin_top_mobile: 0px
+        bg_opacity: "100"
+        icon: mdi:calendar
+      - type: custom:layout-card
+        layout_type: custom:vertical-layout
+        layout:
+          height: 70vh
+          margin: 0vh 0vh 0vh
+          padding: 0vh 0.4vh
+        cards:
+          - type: custom:atomic-calendar-revive
+            enableModeChange: true
+            entities:
+              - entity: calendar.ele118_grunnleggende_nettverksteknikk
+                name: ELE118 - Grunnleggende Nettverksteknikk
+                eventTitle: ELE118 - Grunnleggende Nettverksteknikk
+              - entity: calendar.martine_og_andre_2
+                name: Martine og André
+              - entity: calendar.arbeid_2
+                name: Arbeid André
+              - entity: calendar.ele141_elektrofaglig_basis_1
+                name: ELE141 - Elektrofaglig Basis 1
+              - entity: calendar.ele204_reguleringsteknikk_1
+                name: ELE204 - Reguleringsteknikk 1
+              - entity: calendar.ele205_videregaende_programmering
+                name: ELE205 - Videregaende Programmering
+              - entity: >-
+                  calendar.https_cloud_timeedit_net_hvl_web_pen_ri6625qy7k35u6qzq9qn31zqzw8zy76807_ics
+                name: ING202 - Programmering for Ingeniører
+            maxDaysToShow: 7
+            disableCalLocationLink: true
+            showWeekNumber: false
+            showEventDate: true
+            showCalendarName: true
+            showProgressBar: true
+            showFullDayProgress: false
+            dimFinishedEvents: true
+            disableCalLink: true
+            disableCalEventLink: false
+            showLastCalendarWeek: false
+            disableEventLink: false
+            disableLocationLink: true
+            showNoEventsForToday: false
+            showDatePerEvent: false
+            showTimeRemaining: false
+            hoursOnSameLine: true
+            showEventIcon: false
+            showHiddenText: false
+            hideDuplicates: false
+            showRelativeTime: false
+            showDate: false
+            showDeclined: false
+            card_mod:
+              style: |
+                ha-card {
+                  box-shadow: none;
+                  background-size: cover;
+                  font-size: 14px;
+                }
+        view_layout:
+          grid-area: main
+      - type: custom:mod-card
+        card_mod:
+          style: |
+            ha-card { 
+              z-index: 2;
+              position: fixed;
+              bottom: 36px;
+              left: 10px;
+              width: calc(100% - 20px);
+              background: var(--background-color) !important;
+              padding: 10px;
+              }
+        card:
+          type: grid
+          square: false
+          columns: 1
+          cards:
+            - type: custom:paper-buttons-row
+              buttons:
+                - icon: mdi:home
+                  layout: icon
+                  name: Hjem
+                  tap_action:
+                    action: navigate
+                    navigation_path: home
+                  styles:
+                    button:
+                      background-color: var(--footer-accent-color)
+                      border-radius: 34px
+                      width: 102px
+                      height: 42px
+                    icon:
+                      margin-top: 0
+layout:
+  margin: "-0.5vh 1vh 0vh"
+  grid-template-columns: auto
+  grid-template-rows: 19.5vh 7.5vh 50vh 4vh 10vh 9vh
+  grid-template-areas: |
+    "header"
+    "subheader"
+    "main"
+    "footer_title"
+    "footer"
+    "menu"
